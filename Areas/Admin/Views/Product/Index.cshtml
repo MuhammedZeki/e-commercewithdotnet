@@ -1,0 +1,63 @@
+@{
+    Layout = "_AdminLayout";
+}
+@model List<ProductGetModel>
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header py-1 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Ürünler</h5>
+                <a asp-controller="Product" asp-action="Create" class="btn btn-sm btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped mb-0">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th style="width: 20px;">Id</th>
+                                <th style="width: 80px;">Resim</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Aktif</th>
+                                <th>Anasayfa</th>
+                                <th>Kategori</th>
+                                <th style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in @Model)
+                            {
+                                <tr>
+                                    <td>@i.Id</td>
+                                    <td>
+                                        <img src="~/img/@i.Img" class="img-fluid" alt="@i.Name">
+                                    </td>
+                                    <td>@i.Name</td>
+                                    <td>@i.Price ₺</td>
+                                    <td>
+                                        <i
+                                            class="fa-solid @(i.IsActive 
+                                                                                                                                                                           ? "fa-circle-check text-success" : "fa-circle-xmark text-danger")"></i>
+                                    </td>
+                                    <td>
+                                        <i
+                                            class="fa-solid @(i.IsHome 
+                                                                                                                                                                           ? "fa-circle-check text-success" : "fa-circle-xmark text-danger")"></i>
+                                    </td>
+                                    <td>@i.CategoryName</td>
+                                    <td>
+                                        <a href="kategori-ekle.html" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
