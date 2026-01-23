@@ -2,16 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dotnet_db.Models;
 
-public class CategoryCreateModel
+public class CategoryEditModel
 {
+    public int Id { get; set; }
+
     [Display(Name = "Category Name")]
-    [Required]
-    [StringLength(20)]
     public string CategoryName { get; set; } = null!;
 
     [Display(Name = "Category Url")]
-    [Required]
-    [StringLength(20)]
     public string CategoryUrl { get; set; } = null!;
 }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uvgw9Y0B0+bOyjUojKk1iTucokzJb9G44duv/Lk7CPY=",
+  "Hash": "LJpIHQz7rZviMGL9Z8tFMJGGCcaMwvinutM1q7NCg4Y=",
   "Source": "dotnet-db",
   "BasePath": "_content/dotnet-db",
   "Mode": "Default",
@@ -1487,6 +1487,27 @@
       "OriginalItemSpec": "wwwroot\\img\\2.jpeg"
     },
     {
+      "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\2ary4a34.cuw.jpg",
+      "SourceId": "dotnet-db",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\",
+      "BasePath": "_content/dotnet-db",
+      "RelativePath": "img/2ary4a34.cuw#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w704ezz2xd",
+      "Integrity": "5DtB3ymGwCv04p0ll3+MYTQpg3xvE7BjCzYW3+90dTw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\2ary4a34.cuw.jpg"
+    },
+    {
       "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\3-big.jpeg",
       "SourceId": "dotnet-db",
       "SourceType": "Discovered",
@@ -1674,6 +1695,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\8.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\aath4bec.vmw.jpg",
+      "SourceId": "dotnet-db",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\",
+      "BasePath": "_content/dotnet-db",
+      "RelativePath": "img/aath4bec.vmw#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cxrbzcj47a",
+      "Integrity": "4LpANMFwjS248qwWRD648caTKRGlf3s/rEb/iHj3jJY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\aath4bec.vmw.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\dx3ll1py.5bl.jpg",
+      "SourceId": "dotnet-db",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\",
+      "BasePath": "_content/dotnet-db",
+      "RelativePath": "img/dx3ll1py.5bl#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6xdg1nn0is",
+      "Integrity": "hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\dx3ll1py.5bl.jpg"
     },
     {
       "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\slider-1.jpeg",
@@ -4244,6 +4307,88 @@
       ]
     },
     {
+      "Route": "img/2ary4a34.cuw.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\2ary4a34.cuw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1803508"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5DtB3ymGwCv04p0ll3+MYTQpg3xvE7BjCzYW3+90dTw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 18:07:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5DtB3ymGwCv04p0ll3+MYTQpg3xvE7BjCzYW3+90dTw="
+        }
+      ]
+    },
+    {
+      "Route": "img/2ary4a34.cuw.w704ezz2xd.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\2ary4a34.cuw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1803508"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5DtB3ymGwCv04p0ll3+MYTQpg3xvE7BjCzYW3+90dTw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 18:07:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w704ezz2xd"
+        },
+        {
+          "Name": "label",
+          "Value": "img/2ary4a34.cuw.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5DtB3ymGwCv04p0ll3+MYTQpg3xvE7BjCzYW3+90dTw="
+        }
+      ]
+    },
+    {
       "Route": "img/3-big.jpeg",
       "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\3-big.jpeg",
       "Selectors": [],
@@ -4978,6 +5123,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-7aI3CFCFHHivPkmKzk9s2u0wS4v4t/PAgZxhPfGWsVI="
+        }
+      ]
+    },
+    {
+      "Route": "img/aath4bec.vmw.cxrbzcj47a.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\aath4bec.vmw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83864"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LpANMFwjS248qwWRD648caTKRGlf3s/rEb/iHj3jJY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 15:49:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cxrbzcj47a"
+        },
+        {
+          "Name": "label",
+          "Value": "img/aath4bec.vmw.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LpANMFwjS248qwWRD648caTKRGlf3s/rEb/iHj3jJY="
+        }
+      ]
+    },
+    {
+      "Route": "img/aath4bec.vmw.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\aath4bec.vmw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83864"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LpANMFwjS248qwWRD648caTKRGlf3s/rEb/iHj3jJY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 15:49:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LpANMFwjS248qwWRD648caTKRGlf3s/rEb/iHj3jJY="
+        }
+      ]
+    },
+    {
+      "Route": "img/dx3ll1py.5bl.6xdg1nn0is.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\dx3ll1py.5bl.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 18:07:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6xdg1nn0is"
+        },
+        {
+          "Name": "label",
+          "Value": "img/dx3ll1py.5bl.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I="
+        }
+      ]
+    },
+    {
+      "Route": "img/dx3ll1py.5bl.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\dx3ll1py.5bl.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113984"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 Jan 2026 18:07:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I="
         }
       ]
     },

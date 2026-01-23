@@ -1,5 +1,7 @@
 using dotnet_db.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Template;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet_db.Areas.Admin.Controllers;
 
@@ -39,7 +41,10 @@ public class CategoryController : Controller
     [HttpPost("create")]
     public ActionResult Create(CategoryCreateModel model)
     {
-
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
         var category = new Category
         {
             CategoryName = model.CategoryName,
@@ -50,4 +55,45 @@ public class CategoryController : Controller
 
         return RedirectToAction("Index", "Category");
     }
+
+    [HttpGet("edit/{id}")]
+    public ActionResult Edit(int id)
+    {
+
+        var category = _context.Categories.Select(i => new CategoryEditModel
+        {
+            Id = i.Id,
+            CategoryName = i.CategoryName,
+            CategoryUrl = i.Url
+
+        }).FirstOrDefault(i => i.Id == id);
+
+        return View(category);
+    }
+
+    [HttpPost("edit/{id}")]
+    public ActionResult Edit(int id, CategoryEditModel model)
+    {
+        if (id != model.Id)
+        {
+            return NotFound();
+        }
+        if (ModelState.IsValid)
+        {
+            var category = _context.Categories.FirstOrDefault(i => i.Id == model.Id);
+            if (category != null)
+            {
+                category.CategoryName = model.CategoryName;
+                category.Url = model.CategoryUrl;
+                _context.SaveChanges();
+
+                TempData["message"] = $"{category.CategoryName} olarak başarıyla Güncellendi.";
+
+                return RedirectToAction("Index", "Category");
+            }
+        }
+        return View(model);
+    }
+
+
 }
