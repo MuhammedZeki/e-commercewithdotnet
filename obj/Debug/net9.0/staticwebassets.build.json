@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LJpIHQz7rZviMGL9Z8tFMJGGCcaMwvinutM1q7NCg4Y=",
+  "Hash": "R0HbF//luwVUpbDpFfjBf3H0ePZ6Dsk7QqYwf+q5CNo=",
   "Source": "dotnet-db",
   "BasePath": "_content/dotnet-db",
   "Mode": "Default",
@@ -1737,6 +1737,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\dx3ll1py.5bl.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\qj4bvtpb.2oj.jpg",
+      "SourceId": "dotnet-db",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\",
+      "BasePath": "_content/dotnet-db",
+      "RelativePath": "img/qj4bvtpb.2oj#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lx7pl2dbxl",
+      "Integrity": "l/5I2vY64iqxL4vTrWHOeTpa+Y0KoX9zkplQnTv/HbU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\qj4bvtpb.2oj.jpg"
     },
     {
       "Identity": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\slider-1.jpeg",
@@ -5287,6 +5308,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-hoj5Ow+LwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I="
+        }
+      ]
+    },
+    {
+      "Route": "img/qj4bvtpb.2oj.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\qj4bvtpb.2oj.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2550441"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"l/5I2vY64iqxL4vTrWHOeTpa+Y0KoX9zkplQnTv/HbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 Jan 2026 15:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-l/5I2vY64iqxL4vTrWHOeTpa+Y0KoX9zkplQnTv/HbU="
+        }
+      ]
+    },
+    {
+      "Route": "img/qj4bvtpb.2oj.lx7pl2dbxl.jpg",
+      "AssetFile": "C:\\Users\\mzeki\\OneDrive\\Masaüstü\\dotnet-db\\wwwroot\\img\\qj4bvtpb.2oj.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2550441"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"l/5I2vY64iqxL4vTrWHOeTpa+Y0KoX9zkplQnTv/HbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 Jan 2026 15:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lx7pl2dbxl"
+        },
+        {
+          "Name": "label",
+          "Value": "img/qj4bvtpb.2oj.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-l/5I2vY64iqxL4vTrWHOeTpa+Y0KoX9zkplQnTv/HbU="
         }
       ]
     },

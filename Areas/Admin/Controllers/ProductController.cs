@@ -88,7 +88,7 @@ public class ProductController : Controller
             Name = i.Name,
             Price = i.Price,
             Description = i.Description,
-            Img = i.Img,
+            ImgName = i.Img,
             IsHome = i.IsHome,
             IsActive = i.IsActive,
             CategoryId = i.CategoryId
@@ -107,35 +107,39 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        var product = _context.Products.FirstOrDefault(i => i.Id == model.Id);
-        if (product != null)
+
+        if (ModelState.IsValid)
         {
 
-            if (model.ImgFile != null)
+            var product = _context.Products.FirstOrDefault(i => i.Id == model.Id);
+            if (product != null)
             {
-                var fileName = Path.GetRandomFileName() + ".jpg";
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (model.ImgFile != null)
                 {
-                    await model.ImgFile!.CopyToAsync(stream);
+                    var fileName = Path.GetRandomFileName() + ".jpg";
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await model.ImgFile!.CopyToAsync(stream);
+                    }
+                    product.Img = fileName;
                 }
-                product.Img = fileName;
+
+                product.Name = model.Name;
+                product.Price = model.Price ?? 0;
+                product.Description = model.Description;
+                product.IsHome = model.IsHome;
+                product.IsActive = model.IsActive;
+                product.CategoryId = model.CategoryId;
+                _context.SaveChanges();
+
+                TempData["message"] = $"{product.Name} olarak başarıyla Güncellendi.";
+
+                return RedirectToAction("Index", "Product");
             }
-
-            product.Name = model.Name;
-            product.Price = model.Price;
-            product.Description = model.Description;
-            product.IsHome = model.IsHome;
-            product.IsActive = model.IsActive;
-            product.CategoryId = model.CategoryId;
-            _context.SaveChanges();
-
-            TempData["message"] = $"{product.Name} olarak başarıyla Güncellendi.";
-
-            return RedirectToAction("Index", "Product");
         }
-
+        ViewBag.Categories = new SelectList(_context.Categories.ToList(), "Id", "CategoryName");
         return View(model);
     }
 }

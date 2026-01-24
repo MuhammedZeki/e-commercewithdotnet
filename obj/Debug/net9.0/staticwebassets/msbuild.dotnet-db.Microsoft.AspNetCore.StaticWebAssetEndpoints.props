@@ -228,6 +228,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-hoj5Ow\u002BLwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"113984"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022hoj5Ow\u002BLwIqymXqCvXzypQi2/bgolqcDSpwsQ3FLv/I=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 Jan 2026 18:07:29 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/dotnet-db/img/qj4bvtpb.2oj.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qj4bvtpb.2oj.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-l/5I2vY64iqxL4vTrWHOeTpa\u002BY0KoX9zkplQnTv/HbU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"2550441"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022l/5I2vY64iqxL4vTrWHOeTpa\u002BY0KoX9zkplQnTv/HbU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 Jan 2026 15:12:55 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/dotnet-db/img/qj4bvtpb.2oj.lx7pl2dbxl.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qj4bvtpb.2oj.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lx7pl2dbxl"},{"Name":"integrity","Value":"sha256-l/5I2vY64iqxL4vTrWHOeTpa\u002BY0KoX9zkplQnTv/HbU="},{"Name":"label","Value":"_content/dotnet-db/img/qj4bvtpb.2oj.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2550441"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022l/5I2vY64iqxL4vTrWHOeTpa\u002BY0KoX9zkplQnTv/HbU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 24 Jan 2026 15:12:55 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/dotnet-db/img/slider-1.03q7436g5b.jpeg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\slider-1.jpeg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

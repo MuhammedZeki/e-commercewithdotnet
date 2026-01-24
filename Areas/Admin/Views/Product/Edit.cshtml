@@ -15,47 +15,54 @@
                 </div>
                 <div class="card-body">
                     <input type="hidden" name="Id" value="@Model.Id">
+                    <input type="hidden" name="ImgName" value="@Model.ImgName">
                     <div class="row mb-3">
-                        <label for="Name" class="col-sm-2 col-form-label">Ürün Adı</label>
+                        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input asp-for="Name" class="form-control">
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="Description" class="col-sm-2 col-form-label">Ürün Açıklama</label>
+                        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="Price" class="col-sm-2 col-form-label">Fiyat</label>
+                        <label asp-for="Price" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input asp-for="Price" class="form-control">
+                            <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="IsActive" class="col-sm-2 col-form-label">Aktif</label>
+                        <label asp-for="IsActive" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input asp-for="IsActive" class="form-check-input">
+                            <span asp-validation-for="IsActive" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="IsHome" class="col-sm-2 col-form-label">Anasayfa</label>
+                        <label asp-for="IsHome" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input asp-for="IsHome" class="form-check-input">
+                            <span asp-validation-for="IsHome" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="CategoryId" class="col-sm-2 col-form-label">Kategori</label>
+                        <label asp-for="CategoryId" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.Categories">
                                 <option value="" selected>Seçiniz</option>
                             </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
                         </div>
                     </div>
                 </div>
@@ -64,10 +71,17 @@
         <div class="col-md-3">
             <div class="card shadow">
                 <div class="card-body">
-                    <img src="~/img/@Model.Img" class="img-thumbnail" alt="@Model.Img">
+                    <img src="~/img/@Model.ImgName" class="img-thumbnail" alt="@Model.ImgName">
                     <input asp-for="@Model.ImgFile" type="file" class="form-control mt-3">
+                    <span asp-validation-for="ImgFile" class="text-danger"></span>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+
+
+@section Script {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

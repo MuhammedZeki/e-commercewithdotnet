@@ -24,7 +24,7 @@
                     <div class="row mb-3">
                         <label for="Description" class="col-sm-2 col-form-label">Ürün Açıklama</label>
                         <div class="col-sm-10">
-                            <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                            <textarea asp-validation-for="Description" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -35,15 +35,15 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="IsActive" class="col-sm-2 col-form-label">Aktif</label>
+                        <label asp-for="IsActive" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <input asp-for="IsActive" class="form-check-input">
+                            <input asp-validation-for="IsActive" class="form-check-input">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="IsHome" class="col-sm-2 col-form-label">Anasayfa</label>
+                        <label asp-for="IsHome" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <input asp-for="IsHome" class="form-check-input">
+                            <input asp-validation-for="IsHome" class="form-check-input">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -71,5 +71,8 @@
             </div>
         </div>
     </div>
-
 </div>
+
+@section Script {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
