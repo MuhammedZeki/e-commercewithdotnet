@@ -142,6 +142,40 @@ public class ProductController : Controller
         ViewBag.Categories = new SelectList(_context.Categories.ToList(), "Id", "CategoryName");
         return View(model);
     }
+
+
+    [HttpGet("delete/{id}")]
+    public ActionResult Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var product = _context.Products.FirstOrDefault(i => i.Id == id);
+
+        if (product != null)
+        {
+            return View(product);
+        }
+        return RedirectToAction("Index", "Product");
+
+    }
+    [HttpPost("delete/{id}")]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var product = _context.Products.Find(id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        _context.Products.Remove(product);
+        _context.SaveChanges();
+
+        TempData["message"] = $"{product.Name} silindi.";
+        return RedirectToAction("Index");
+    }
 }
 
 

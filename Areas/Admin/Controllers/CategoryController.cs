@@ -95,5 +95,37 @@ public class CategoryController : Controller
         return View(model);
     }
 
+    [HttpGet("delete/{id}")]
+    public ActionResult Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
 
+        var category = _context.Categories.FirstOrDefault(i => i.Id == id);
+
+        if (category != null)
+        {
+            return View(category);
+        }
+        return RedirectToAction("Index", "Category");
+
+    }
+
+    [HttpPost("delete/{id}")]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var category = _context.Categories.Find(id);
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        _context.Categories.Remove(category);
+        _context.SaveChanges();
+
+        TempData["message"] = $"{category.CategoryName} silindi.";
+        return RedirectToAction("Index");
+    }
 }
