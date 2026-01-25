@@ -15,7 +15,6 @@
             <div class="card-body">
                 <form method="post" asp-controller="Slider" asp-action="Edit" asp-route-id="@Model.Id"
                     enctype="multipart/form-data">
-                    <div asp-validation-summary="All"></div>
                     <input type="hidden" name="Id" value="@Model.Id">
                     <input type="hidden" name="ImageName" value="@Model.ImageName">
                     <div class="row mb-3">
@@ -68,3 +67,7 @@
         </div>
     </div>
 </div>
+
+@section Script {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -133,4 +133,37 @@ public class SliderController : Controller
         return View(model);
     }
 
+    [HttpGet("delete/{id}")]
+    public ActionResult Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var slider = _context.Sliders.FirstOrDefault(i => i.Id == id);
+
+        if (slider != null)
+        {
+            return View(slider);
+        }
+        return RedirectToAction("Index", "Slider");
+
+    }
+
+    [HttpPost("delete/{id}")]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var slider = _context.Sliders.Find(id);
+        if (slider == null)
+        {
+            return NotFound();
+        }
+
+        _context.Sliders.Remove(slider);
+        _context.SaveChanges();
+
+        TempData["message"] = $"{slider.Title} silindi.";
+        return RedirectToAction("Index");
+    }
 }

@@ -21,7 +21,7 @@
                                 <th>Başlık</th>
                                 <th>Aktif</th>
                                 <th>Index</th>
-                                <th style="width: 50px;"></th>
+                                <th style="width: 90px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +42,10 @@
                                         <a asp-controller="Slider" asp-action="Edit" asp-route-id="@i.Id"
                                             class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a asp-controller="Slider" asp-action="Delete" asp-route-id="@i.Id"
+                                            class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     </td>
                                 </tr>

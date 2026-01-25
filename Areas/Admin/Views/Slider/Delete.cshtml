@@ -1,0 +1,18 @@
+@{
+    Layout = "_AdminLayout";
+}
+@model Slider
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body text-center">
+                @Model.Title isimli slider silmek istiyor musunuz?
+                <form asp-controller="Slider" asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+                    <input type="hidden" name="Id" value="@Model.Id">
+                    <button type="submit" class="btn btn-danger">Evet</button>
+                    <a asp-controller="Slider" asp-action="Index" type="button" class="btn btn-primary">Hayır</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
