@@ -207,3 +207,17 @@ C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\obj\Debug\net9.0\compressed\1tdlrjz
 C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\obj\Debug\net9.0\dotnet-db.sourcelink.json
 C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\obj\Debug\net9.0\compressed\trt1iypmh6-l79u8qdsdx.gz
 C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\obj\Debug\net9.0\compressed\zzsfr37kbp-tpznpjr8xw.gz
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\mzeki\OneDrive\Masaüstü\dotnet-db\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
