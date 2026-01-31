@@ -3,8 +3,11 @@ using System.ComponentModel.DataAnnotations;
 namespace dotnet_db.Models;
 
 
-public class RoleCreateModel
+public class RoleEditModel
 {
+
+    public int Id { get; set; }
+
 
     [Display(Name = "Rol Adı")]
     [Required(ErrorMessage = "Lütfen rol adını giriniz!")]
