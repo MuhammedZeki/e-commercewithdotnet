@@ -21,7 +21,7 @@
                         <thead class="table-secondary">
                             <tr>
                                 <th>Id</th>
-                                <th>Username</th>
+                                <th>Ad Soyad</th>
                                 <th>Email</th>
                                 <th style="width: 50px;"></th>
                             </tr>
@@ -32,14 +32,13 @@
 
                                 <tr>
                                     <td>@kat.Id</td>
-                                    <td>@kat.UserName</td>
+                                    <td>@kat.FullName</td>
                                     <td>@kat.Email</td>
                                     <td>
                                         <a asp-controller="User" asp-action="Edit" asp-route-id="@kat.Id"
                                             class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-
                                     </td>
                                 </tr>
                             }
