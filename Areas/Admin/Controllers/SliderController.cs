@@ -1,11 +1,11 @@
 using dotnet_db.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet_db.Controllers;
 
 
-
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin/slider")]
 public class SliderController : Controller

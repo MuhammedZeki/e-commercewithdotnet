@@ -77,8 +77,6 @@ public class AccountController : Controller
     }
 
 
-
-
     [HttpGet("create")]
     public ActionResult Create()
     {
@@ -114,8 +112,6 @@ public class AccountController : Controller
     }
 
 
-
-
     [Authorize]
     [HttpGet("settings")]
     public ActionResult Settings()
@@ -124,7 +120,7 @@ public class AccountController : Controller
     }
 
 
-
+    [Authorize]
     public async Task<ActionResult> Logout()
     {
         await _signInManager.SignOutAsync();

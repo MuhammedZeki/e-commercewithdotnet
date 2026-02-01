@@ -1,11 +1,10 @@
 using dotnet_db.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing.Template;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace dotnet_db.Areas.Admin.Controllers;
 
-
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin/categories")]
 public class CategoryController : Controller

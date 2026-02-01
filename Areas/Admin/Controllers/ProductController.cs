@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using dotnet_db.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace dotnet_db.Areas.Admin.Controllers;
 
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin/products")]
 public class ProductController : Controller
@@ -172,6 +174,7 @@ public class ProductController : Controller
         return RedirectToAction("Index", "Product");
 
     }
+
     [HttpPost("delete/{id}")]
     public IActionResult DeleteConfirmed(int id)
     {

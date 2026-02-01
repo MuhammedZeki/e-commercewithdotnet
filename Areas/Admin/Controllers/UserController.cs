@@ -1,4 +1,5 @@
 using dotnet_db.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,13 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace dotnet_db.Controllers;
 
 
-
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin/users")]
 public class UserController : Controller
 {
-
-
     private UserManager<AppUser> _userManager;
     private RoleManager<AppRole> _roleManager;
 
@@ -80,7 +79,8 @@ public class UserController : Controller
             {
                 Id = user.Id,
                 FullName = user.FullName,
-                Email = user.Email!
+                Email = user.Email!,
+                SelectedRoles = await _userManager.GetRolesAsync(user)
             }
         );
     }
@@ -110,6 +110,12 @@ public class UserController : Controller
                 }
                 if (result.Succeeded)
                 {
+                    await _userManager.RemoveFromRolesAsync(user, await _userManager.GetRolesAsync(user));
+
+                    if (model.SelectedRoles != null)
+                    {
+                        await _userManager.AddToRolesAsync(user, model.SelectedRoles);
+                    }
                     TempData["message"] = $"{user.FullName} olarak başarıyla Güncellendi.";
                     return RedirectToAction("Index");
                 }

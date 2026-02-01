@@ -27,5 +27,7 @@ public class UserEditModel
     [DataType(DataType.Password)]
     [Compare("Password", ErrorMessage = "Şifreler birbiriyle uyuşmuyor!")]
     public string ConfirmPassword { get; set; } = null!;
+
+    public IList<string> SelectedRoles { get; set; } = null!;
 }
 

@@ -1,10 +1,12 @@
-using System.Threading.Tasks;
 using dotnet_db.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_db.Controllers;
 
+
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin/roles")]
 public class RoleController : Controller

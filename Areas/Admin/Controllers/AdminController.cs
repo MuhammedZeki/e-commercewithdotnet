@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_db.Areas.Admin.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 [Area("Admin")]
 [Route("admin")]
 public class AdminController : Controller
