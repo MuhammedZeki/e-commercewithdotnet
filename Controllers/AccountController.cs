@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Threading.Tasks;
 using dotnet_db.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -174,4 +175,73 @@ public class AccountController : Controller
         }
         return View(model);
     }
+
+
+    [Authorize]
+    [HttpGet("settings/change-password")]
+    public ActionResult ChangePassword()
+    {
+        return View();
+    }
+
+
+    [Authorize]
+    [HttpPost("settings/change-password")]
+    public async Task<ActionResult> ChangePassword(AccountChangePasswordModel model)
+    {
+
+        if (ModelState.IsValid)
+        {
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId!);
+
+            if (user != null)
+            {
+                var res = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.Password);
+
+                if (res.Succeeded)
+                {
+                    TempData["message"] = "Şifreniz başarıyla değiştirildi!";
+
+                }
+
+                foreach (var err in res.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                }
+
+            }
+        }
+        return View(model);
+    }
+
+    [HttpGet("forgot-password")]
+    public ActionResult ForgotPassword()
+    {
+        return View();
+    }
+
+    [HttpPost("forgot-password")]
+    public async Task<ActionResult> ForgotPassword(AccountForgotPasswordModel model)
+    {
+
+        if (ModelState.IsValid)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var url = Url.Action("ResetPassword", "Account", new { userId = user.Id, token });
+                TempData["message"] = "Mail gönderilen link ile şifreni sıfırlayabilirsin";
+            }
+            else
+            {
+                TempData["message"] = "Email bulunamadı!";
+            }
+        }
+        return View();
+    }
+
 }
