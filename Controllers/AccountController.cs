@@ -244,4 +244,57 @@ public class AccountController : Controller
         return View();
     }
 
+
+    [HttpGet("reset-password")]
+    public async Task<ActionResult> ResetPassword(string userId, string token)
+    {
+
+        if (userId == null || token == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        return View(
+            new AccountResetPasswordModel
+            {
+                Token = token,
+                Email = user.Email!
+            }
+        );
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<ActionResult> ResetPassword(AccountResetPasswordModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var res = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+
+            if (res.Succeeded)
+            {
+                TempData["message"] = "Şifreniz başarıyla değiştirildi!";
+                return RedirectToAction("Login");
+            }
+            foreach (var err in res.Errors)
+            {
+                TempData["message"] = err.Description;
+            }
+        }
+        return View(model);
+    }
+
 }
