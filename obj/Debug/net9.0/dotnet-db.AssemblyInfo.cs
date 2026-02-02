@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotnet-db")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56874f34fd9606c3b6cc67fa453529c0471b190a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc7c9135c19fdca7fb9bffe493af22953c34e7f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotnet-db")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotnet-db")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

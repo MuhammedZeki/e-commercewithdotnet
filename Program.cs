@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IEmailService, SmtpEmailService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(options =>

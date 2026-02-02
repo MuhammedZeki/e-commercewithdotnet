@@ -14,11 +14,14 @@ public class AccountController : Controller
 
     private UserManager<AppUser> _userManager;
     private SignInManager<AppUser> _signInManager;
+    private IEmailService _emailService;
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _emailService = emailService;
     }
 
 
@@ -234,7 +237,13 @@ public class AccountController : Controller
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var url = Url.Action("ResetPassword", "Account", new { userId = user.Id, token });
+
+                var link = $"<a href='http://localhost:5103{url}'>Şifreni yenilemek için bu linke tıklayınız</a>";
+                await _emailService.SendEmailAsync(model.Email, "Şifre sıfırlama", link);
+
                 TempData["message"] = "Mail gönderilen link ile şifreni sıfırlayabilirsin";
+
+                return RedirectToAction("Login");
             }
             else
             {
