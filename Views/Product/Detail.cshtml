@@ -60,9 +60,12 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <a href="#" class="btn btn-warning">
-                            <i class="fa fa-shopping-basket me-1"></i> Sepete Ekle
-                        </a>
+                        <form method="post" asp-action="AddToCart" class="me-1" asp-controller="Cart">
+                            <input type="hidden" name="productId" value="@Model.Id" />
+                            <button type="submit" class="btn btn-warning inline-block">
+                                <i class="fa fa-shopping-basket"></i> Sepete Ekle
+                            </button>
+                        </form>
                         <a href="#" class="btn btn-light">
                             <i class="fa-regular fa-heart basket me-1"></i> Listeye Ekle
                         </a>

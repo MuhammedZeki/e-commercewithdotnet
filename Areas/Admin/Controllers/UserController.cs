@@ -1,8 +1,11 @@
+using System.Threading.Tasks;
 using dotnet_db.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace dotnet_db.Controllers;
 
@@ -24,8 +27,15 @@ public class UserController : Controller
     }
 
     [HttpGet("")]
-    public ActionResult Index()
+    public async Task<ActionResult> Index(string? role)
     {
+        ViewBag.Roles = new SelectList(_roleManager.Roles, "Name", "Name", role);
+
+        if (!string.IsNullOrEmpty(role))
+        {
+            return View(await _userManager.GetUsersInRoleAsync(role));
+        }
+
         return View(_userManager.Users);
     }
 
@@ -128,4 +138,43 @@ public class UserController : Controller
         }
         return View(model);
     }
+
+    [HttpGet("delete/{id}")]
+
+    public async Task<ActionResult> Delete(string id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var user = await _userManager.FindByIdAsync(id);
+
+
+        if (user != null)
+        {
+            return View(user);
+        }
+        return RedirectToAction("Index");
+
+    }
+
+    [HttpPost("delete/{id}")]
+    public async Task<IActionResult> DeleteConfirmed(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var res = await _userManager.DeleteAsync(user);
+        if (res.Succeeded)
+        {
+            TempData["message"] = $"{user.FullName} silindi.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
 }

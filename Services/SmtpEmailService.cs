@@ -35,7 +35,7 @@ public class SmtpEmailService : IEmailService
                 IsBodyHtml = true
             };
             mailMessage.To.Add(email);
-            client.Send(mailMessage);
+            await client.SendMailAsync(mailMessage);
         }
 
     }
