@@ -24,7 +24,6 @@ public class CartController : Controller
         return View(cart);
     }
 
-    [Authorize]
     [HttpPost("add-to-cart")]
     public async Task<ActionResult> AddToCart(int productId, int quantity = 1)
     {
@@ -74,7 +73,7 @@ public class CartController : Controller
 
     private async Task<Card> GetCard()
     {
-        var customerId = User.Identity?.Name;
+        var customerId = User.Identity?.Name ?? Request.Cookies["customerId"];
 
         var cart = await _context.Cards
                                 .Include(i => i.CardItems)
@@ -84,10 +83,21 @@ public class CartController : Controller
 
         if (cart == null)
         {
-            cart = new Card { CustomerId = customerId! };
+            customerId = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(customerId))
+            {
+                customerId = Guid.NewGuid().ToString();
+                var options = new CookieOptions
+                {
+                    Expires = DateTime.Now.AddMonths(1),
+                    IsEssential = true
+                };
+                Response.Cookies.Append("customerId", customerId, options);
+            }
+            cart = new Card { CustomerId = customerId };
             _context.Cards.Add(cart);
         }
-
         return cart;
     }
 

@@ -1,9 +1,9 @@
 using System.Security.Claims;
-using System.Threading.Tasks;
 using dotnet_db.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_db.Controllers;
 
@@ -15,13 +15,21 @@ public class AccountController : Controller
     private UserManager<AppUser> _userManager;
     private SignInManager<AppUser> _signInManager;
     private IEmailService _emailService;
+    private readonly DataContext _context;
 
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService)
+    public AccountController
+    (
+        UserManager<AppUser> userManager,
+        SignInManager<AppUser> signInManager,
+        IEmailService emailService,
+        DataContext context
+    )
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _emailService = emailService;
+        _context = context;
     }
 
 
@@ -52,6 +60,8 @@ public class AccountController : Controller
                     await _userManager.ResetAccessFailedCountAsync(user);
                     await _userManager.SetLockoutEndDateAsync(user, null);
 
+                    await TransferToCart(user);
+
                     if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                     {
                         return Redirect(ReturnUrl);
@@ -65,7 +75,7 @@ public class AccountController : Controller
                 {
                     var lockoutDate = await _userManager.GetLockoutEndDateAsync(user);
                     var timeLeft = lockoutDate.Value - DateTime.UtcNow;
-                    ModelState.AddModelError("", $"Hesabınız kitlendi. Lütfen {timeLeft.Minutes + 1} dakika sonra tekrar deneyin");
+                    ModelState.AddModelError("", $"Hesabiniz kitlendi. Lütfen {timeLeft.Minutes + 1} dakika sonra tekrar deneyin");
                 }
                 else
                 {
@@ -80,6 +90,41 @@ public class AccountController : Controller
         return View(model);
     }
 
+    private async Task TransferToCart(AppUser user)
+    {
+        var userCart = await _context.Cards
+                                        .Include(i => i.CardItems)
+                                        .ThenInclude(i => i.Product)
+                                        .Where(i => i.CustomerId == user.UserName) // 1 - 1 
+                                        .FirstOrDefaultAsync();
+
+        var cookieCart = await _context.Cards
+                                        .Include(i => i.CardItems)
+                                        .ThenInclude(i => i.Product)
+                                        .Where(i => i.CustomerId == Request.Cookies["customerId"]) /// 5846as - 5846as
+                                        .FirstOrDefaultAsync();
+
+        foreach (var item in cookieCart?.CardItems!)
+        {
+            var cartItem = userCart?.CardItems.Where(i => i.ProductId == item.ProductId).FirstOrDefault();
+            if (cartItem != null)
+            {
+                cartItem.Quantity += item.Quantity;
+            }
+            else
+            {
+                userCart?.CardItems.Add(new CardItem
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity
+                });
+            }
+        }
+
+        _context.Cards.Remove(cookieCart);
+        await _context.SaveChangesAsync();
+
+    }
 
     [HttpGet("create")]
     public ActionResult Create()
@@ -305,5 +350,6 @@ public class AccountController : Controller
         }
         return View(model);
     }
+
 
 }
