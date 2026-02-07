@@ -1,4 +1,5 @@
 using dotnet_db.Models;
+using dotnet_db.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IEmailService, SmtpEmailService>();
+builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(options =>

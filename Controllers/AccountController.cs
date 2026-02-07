@@ -1,6 +1,8 @@
 using System.Security.Claims;
 using dotnet_db.Models;
+using dotnet_db.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,7 @@ public class AccountController : Controller
     private UserManager<AppUser> _userManager;
     private SignInManager<AppUser> _signInManager;
     private IEmailService _emailService;
+    private ICartService _cartService;
     private readonly DataContext _context;
 
 
@@ -23,6 +26,7 @@ public class AccountController : Controller
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         IEmailService emailService,
+        ICartService cartService,
         DataContext context
     )
     {
@@ -30,6 +34,7 @@ public class AccountController : Controller
         _signInManager = signInManager;
         _emailService = emailService;
         _context = context;
+        _cartService = cartService;
     }
 
 
@@ -60,7 +65,7 @@ public class AccountController : Controller
                     await _userManager.ResetAccessFailedCountAsync(user);
                     await _userManager.SetLockoutEndDateAsync(user, null);
 
-                    await TransferToCart(user);
+                    await _cartService.TransferCartToUser(user.UserName!);
 
                     if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                     {
@@ -88,42 +93,6 @@ public class AccountController : Controller
             }
         }
         return View(model);
-    }
-
-    private async Task TransferToCart(AppUser user)
-    {
-        var userCart = await _context.Cards
-                                        .Include(i => i.CardItems)
-                                        .ThenInclude(i => i.Product)
-                                        .Where(i => i.CustomerId == user.UserName) // 1 - 1 
-                                        .FirstOrDefaultAsync();
-
-        var cookieCart = await _context.Cards
-                                        .Include(i => i.CardItems)
-                                        .ThenInclude(i => i.Product)
-                                        .Where(i => i.CustomerId == Request.Cookies["customerId"]) /// 5846as - 5846as
-                                        .FirstOrDefaultAsync();
-
-        foreach (var item in cookieCart?.CardItems!)
-        {
-            var cartItem = userCart?.CardItems.Where(i => i.ProductId == item.ProductId).FirstOrDefault();
-            if (cartItem != null)
-            {
-                cartItem.Quantity += item.Quantity;
-            }
-            else
-            {
-                userCart?.CardItems.Add(new CardItem
-                {
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity
-                });
-            }
-        }
-
-        _context.Cards.Remove(cookieCart);
-        await _context.SaveChangesAsync();
-
     }
 
     [HttpGet("create")]
