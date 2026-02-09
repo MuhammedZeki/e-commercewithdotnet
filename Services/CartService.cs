@@ -107,7 +107,7 @@ public class CartService : ICartService
     {
         var userCart = await GetCart(username);
 
-        var cookieCart = await GetCart(_httpContextAccessor.HttpContext?.Request.Cookies["customerId"]!);
+        var cookieCart = await GetCart(_httpContextAccessor.HttpContext?.Request.Cookies["customerId"]!); 
 
         foreach (var item in cookieCart?.CardItems!)
         {

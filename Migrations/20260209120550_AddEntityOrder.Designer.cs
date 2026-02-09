@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_db.Models;
 
@@ -10,9 +11,11 @@ using dotnet_db.Models;
 namespace dotnet_db.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20260209120550_AddEntityOrder")]
+    partial class AddEntityOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
@@ -373,33 +376,6 @@ namespace dotnet_db.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("dotnet_db.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItem");
-                });
-
             modelBuilder.Entity("dotnet_db.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -652,25 +628,6 @@ namespace dotnet_db.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("dotnet_db.Models.OrderItem", b =>
-                {
-                    b.HasOne("dotnet_db.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("dotnet_db.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("dotnet_db.Models.Product", b =>
                 {
                     b.HasOne("dotnet_db.Models.Category", "Category")
@@ -690,11 +647,6 @@ namespace dotnet_db.Migrations
             modelBuilder.Entity("dotnet_db.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("dotnet_db.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

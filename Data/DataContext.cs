@@ -15,7 +15,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int>
     public DbSet<Category> Categories { get; set; }
     public DbSet<Slider> Sliders { get; set; }
     public DbSet<Card> Cards { get; set; }
-
+    public DbSet<Order> Orders { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
