@@ -3,48 +3,105 @@
     Layout = "_AdminLayout";
 }
 
-
 <div class="row">
     <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Roller</h5>
-                <a asp-action="Create" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-plus"></i>
+        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #6c5ce7; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Rol Yönetimi</h5>
+                </div>
+                <a asp-action="Create" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm"
+                       style="background: #1a1a2e; border: none;">
+                    <i class="fa-solid fa-plus me-1 text-warning"></i> Yeni Rol Tanımla
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-0">
-                        <thead class="table-secondary">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background: #f8f9fa;">
                             <tr>
-                                <th>Id</th>
-                                <th>Role Adı</th>
-                                <th style="width: 90px;"></th>
+                                <th class="ps-4 border-0 text-uppercase small fw-bolder text-muted"
+                                    style="font-size: 0.75rem; width: 300px;">Rol ID</th>
+                                <th class="border-0 text-uppercase small fw-bolder text-muted"
+                                    style="font-size: 0.75rem;">Rol Tanımı</th>
+                                <th class="border-0 text-end pe-4" style="width: 150px;">İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var i in Model)
                             {
-
                                 <tr>
-                                    <td>@i.Id</td>
-                                    <td>@i.Name</td>
+                                    <td class="ps-4">
+                                        <code class="small text-muted">@i.Id</code>
+                                    </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@i.Id" class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@i.Id" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </a>
-
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3"
+                                                style="width: 35px; height: 35px;">
+                                                <i class="fa-solid fa-shield-halved text-primary opacity-75"></i>
+                                            </div>
+                                            <span class="fw-bold text-dark">@i.Name</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <div class="btn-group shadow-sm rounded-pill bg-white p-1">
+                                            <a asp-action="Edit" asp-route-id="@i.Id"
+                                                  class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn"
+                                                  title="Düzenle">
+                                                <i class="fa-solid fa-pen-to-square text-primary"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@i.Id"
+                                                  class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn"
+                                                  title="Sil"
+                                                  onclick="return confirm('Bu rolü silmek istediğinize emin misiniz?')">
+                                                <i class="fa-solid fa-trash-can text-danger"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
+                            
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <div class="card-footer bg-white border-0 py-3">
+                <small class="text-muted">
+                    <i class="fa-solid fa-circle-info me-1"></i> Toplam <strong>@Model.Count()</strong> adet rol
+                    tanımlı.
+                </small>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .admin-action-btn {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .admin-action-btn:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.1);
+    }
+
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(248, 249, 250, 0.8);
+    }
+
+    .btn-white {
+        background: #fff;
+    }
+</style>

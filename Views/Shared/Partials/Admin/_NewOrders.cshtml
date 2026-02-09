@@ -1,97 +1,100 @@
 <div class="row">
     <div class="col">
-        <div class="card shadow">
-            <div class="card-header pb-0">
-                <h5 class="card-title">Son Siparişler</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-0">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th>Order Id</th>
-                                <th>Username</th>
-                                <th>Total</th>
-                                <th>Date</th>
-                                <th>State</th>
-                                <th style="width: 40px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>5</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>sadikturan</td>
-                                <td>2000 ₺</td>
-                                <td>10/20/2026</td>
-                                <td>
-                                    <span class="badge bg-primary">Onay Bekliyor</span>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-white border-0 py-3 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 20px; background: #fbc531; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Son Siparişler</h5>
+                </div>
+                <a href="/Admin/Orders" class="btn btn-light btn-sm rounded-pill px-3 fw-bold text-muted small">Tümünü
+                    Gör</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead style="background: #f8f9fa;">
+                                <tr>
+                                    <th class="ps-4 border-0 text-uppercase small fw-bolder text-muted"
+                                        style="font-size: 0.75rem;">Sipariş No</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted"
+                                        style="font-size: 0.75rem;">Müşteri</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted"
+                                        style="font-size: 0.75rem;">Tutar</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted"
+                                        style="font-size: 0.75rem;">Tarih</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted"
+                                        style="font-size: 0.75rem;">Durum</th>
+                                    <th class="border-0 text-end pe-4" style="width: 80px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 5; i <= 9; i++)
+                                {
+                                    <tr>
+                                        <td class="ps-4">
+                                            <span class="fw-bold text-dark">#@i</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar-sm me-2 bg-light rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold"
+                                                    style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                                    S
+                                                </div>
+                                                <span class="small fw-medium">sadikturan</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold text-primary">2.000,00 ₺</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted small">10/20/2026</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge rounded-pill px-3 py-2"
+                                                 style="background: rgba(26, 26, 46, 0.1); color: #1a1a2e; font-size: 0.7rem;">
+                                                <i class="fa-solid fa-clock me-1 text-warning"></i> Onay Bekliyor
+                                            </span>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <a href="#"
+                                                  class="btn btn-sm btn-light rounded-circle border shadow-sm admin-edit-btn"
+                                                  title="Düzenle">
+                                                <i class="fa-solid fa-pen-to-square text-primary"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                            
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <style>
+        .admin-edit-btn {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            line-height: 32px;
+            transition: all 0.2s;
+        }
+
+        .admin-edit-btn:hover {
+            background: #1a1a2e !important;
+        }
+
+        .admin-edit-btn:hover i {
+            color: #fff !important;
+        }
+
+        .table tbody tr {
+            transition: background 0.2s;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(248, 249, 250, 0.5);
+        }
+    </style>

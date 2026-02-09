@@ -1,7 +1,6 @@
 using dotnet_db.Models;
 using dotnet_db.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_db.Controllers;
 

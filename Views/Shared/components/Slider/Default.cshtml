@@ -1,30 +1,53 @@
 @model List<Slider>
 
-<div id="slider" class="carousel slide" data-bs-ride="carousel">
+<div id="slider" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel" style="border-radius: 25px; overflow: hidden;">
     <div class="carousel-indicators">
-        @{
-            int x =0;
-            foreach(var item in Model){
-                <button type="button" data-bs-target="#slider" data-bs-slide-to="@(x)" class="@(x == 0 ? "active" : "")"></button>
-                x += 1;
-                }
-            }
-    </div>
-    <div class="carousel-inner">
-        @{
-            int y =0;
-            foreach(var item in Model){
-                <div class="carousel-item @(y == 0 ? "active" : "")">
-                    <img src="/img/@item.Image" alt="@item.Title" class="d-block w-100">
-                </div>
-                y += 1;
-            }
+        @for (int x = 0; x < Model.Count; x++)
+        {
+            <button type="button" data-bs-target="#slider" data-bs-slide-to="@x" class="@(x == 0 ? "active" : "")" style="width: 30px; height: 5px; border-radius: 10px;"></button>
         }
     </div>
-    <button type="button" class="carousel-control-prev" data-bs-target="#slider" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
+
+    <div class="carousel-inner">
+        @for (int y = 0; y < Model.Count; y++)
+        {
+            <div class="carousel-item @(y == 0 ? "active" : "")" style="height: 450px;">
+                <img src="/img/@Model[y].Image" alt="@Model[y].Title" class="d-block w-100 h-100" style="object-fit: cover; filter: brightness(0.85);">
+                
+                @if (!string.IsNullOrEmpty(Model[y].Title))
+                {
+                    <div class="carousel-caption d-none d-md-block text-start px-4 py-3" style="background: rgba(26, 26, 46, 0.6); backdrop-filter: blur(10px); border-radius: 15px; left: 5%; bottom: 10%; max-width: 40%; border-left: 4px solid #fbc531;">
+                        <h6 class="fw-bold text-white mb-0">@Model[y].Title</h6>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
+        <div class="rounded-circle d-flex align-items-center justify-content-center shadow" style="background: rgba(255, 255, 255, 0.2); width: 45px; height: 45px; backdrop-filter: blur(5px);">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px;"></span>
+        </div>
     </button>
-    <button type="button" class="carousel-control-next" data-bs-target="#slider" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
+    <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
+        <div class="rounded-circle d-flex align-items-center justify-content-center shadow" style="background: rgba(255, 255, 255, 0.2); width: 45px; height: 45px; backdrop-filter: blur(5px);">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px;"></span>
+        </div>
     </button>
 </div>
+
+<style>
+    #slider .carousel-item {
+        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+    
+    #slider .carousel-indicators .active {
+        background-color: #fbc531 !important;
+        width: 50px !important;
+    }
+    
+    .carousel-control-prev:hover div, .carousel-control-next:hover div {
+        background: #fbc531 !important;
+        color: #1a1a2e !important;
+    }
+</style>

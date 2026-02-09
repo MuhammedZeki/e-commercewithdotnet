@@ -1,0 +1,155 @@
+@model OrderCreateModel
+
+
+@section Bar {
+    <section class="py-3 shadow-sm" style="background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="/" class="text-decoration-none d-inline-flex align-items-center breadcrumb-link">
+                            <i class="fa-solid fa-house me-2"></i>Anasayfa
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active d-inline-flex align-items-center" aria-current="page">
+                        Adres Bilgileri
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <style>
+        .breadcrumb-link {
+            color: rgba(255, 255, 255, 0.6) !important;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-link:hover {
+            color: #fff !important;
+        }
+
+        .breadcrumb-item.active {
+            color: #fbc531 !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: rgba(255, 255, 255, 0.3) !important;
+            content: "\f105"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+    </style>
+}
+
+
+
+<section class="mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm"
+                     style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <div class="card-header bg-transparent border-0 pt-4 ps-4">
+                        <h2 class="h4 fw-bold text-dark mb-0">
+                            <i class="bi bi-geo-alt-fill me-2 text-primary"></i>Teslimat Bilgileri
+                        </h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Fullname"
+                                       class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                <input asp-for="Fullname" class="form-control form-control-lg border-0 shadow-sm"
+                                       style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                       placeholder="Adınız Soyadınız">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label asp-for="City"
+                                           class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                    <input asp-for="City" class="form-control border-0 shadow-sm"
+                                           style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                           placeholder="Şehir">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label asp-for="Phone"
+                                               class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                        <input asp-for="Phone" class="form-control border-0 shadow-sm"
+                                               style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                               placeholder="05xx xxx xx xx">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label asp-for="PostalCode"
+                                                   class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                            <input asp-for="PostalCode" class="form-control border-0 shadow-sm"
+                                                   style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                                   placeholder="34000">
+                                            </div>
+
+                                            <div class="col-12 mt-3">
+                                                <label asp-for="Address"
+                                                       class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                                <textarea asp-for="Address" class="form-control border-0 shadow-sm" rows="3"
+                                                          style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                                          placeholder="Tam adresinizi buraya yazınız..."></textarea>
+                                            </div>
+
+                                            <div class="col-12 mt-3">
+                                                <label asp-for="OrderNote"
+                                                       class="form-label small fw-bold text-uppercase text-muted ms-1"></label>
+                                                <textarea asp-for="OrderNote" class="form-control border-0 shadow-sm" rows="2"
+                                                          style="background: rgba(255, 255, 255, 0.9); border-radius: 12px;"
+                                                          placeholder="Kuryeye iletmek istediğiniz notlar..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="card border-0 shadow-lg text-white h-100"
+                                     style="background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%); border-radius: 25px; position: sticky; top: 20px;">
+                                    <div class="card-header bg-transparent border-0 pt-4 ps-4">
+                                        <h2 class="h5 mb-0 fw-bold text-uppercase letter-spacing-1">Sipariş Özeti</h2>
+                                    </div>
+                                    <div class="card-body p-4 d-flex flex-column">
+                                        <div class="flex-grow-1">
+                                            @foreach (var item in ViewBag.Cart.CardItems)
+                                            {
+                                                <div class="d-flex justify-content-between align-items-center mb-3 p-2 rounded-3"
+                                                     style="background: rgba(255, 255, 255, 0.1);">
+                                                    <div>
+                                                        <p class="mb-0 fw-bold small">@item.Product.Name</p>
+                                                        <span class="badge bg-light text-dark rounded-pill" style="font-size: 0.7rem;">x
+                                                            @item.Quantity</span>
+                                                        </div>
+                                                        <span class="fw-bold">@(item.Product.Price * item.Quantity) ₺</span>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                            <div class="mt-4 pt-3 border-top border-white border-opacity-25">
+                                                <div class="d-flex justify-content-between align-items-center mb-2 opacity-75">
+                                                    <span class="small">Ara Toplam</span>
+                                                    <span class="fw-medium">@ViewBag.Cart.SubTotal() ₺</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                    <span class="h5 fw-light">Genel Toplam</span>
+                                                    <span class="h3 mb-0 fw-bolder">@ViewBag.Cart.TotalPrice() ₺</span>
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-light btn-lg w-100 mt-4 py-3 fw-bold shadow"
+                                                    style="border-radius: 15px; transition: transform 0.2s;">
+                                                ÖDEME YAP <i class="bi bi-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>

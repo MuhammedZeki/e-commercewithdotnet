@@ -2,8 +2,52 @@
 
 
 
-<nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav">
-    @foreach(var category in Model){        
-        <a href="/product/category/@category.Url" class="nav-link">@category.CategoryName</a>
+<nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav p-2 shadow-sm"
+     style="background: rgba(26, 26, 46, 0.03); border-radius: 18px; border: 1px solid rgba(0,0,0,0.05); max-height: 500px;">
+    @foreach (var category in Model)
+    {
+        <a href="/product/category/@category.Url"
+               class="nav-link category-pill mb-2 px-3 py-2 d-flex align-items-center justify-content-between">
+            <span>@category.CategoryName</span>
+            <i class="fa-solid fa-chevron-right small opacity-50"></i>
+        </a>
     }
 </nav>
+
+<style>
+    .slider_nav {
+        scrollbar-width: thin;
+        scrollbar-color: #fbc531 transparent;
+    }
+
+    .slider_nav::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .slider_nav::-webkit-scrollbar-thumb {
+        background: #fbc531;
+        border-radius: 10px;
+    }
+
+    .category-pill {
+        color: #1a1a2e !important;
+        font-weight: 500;
+        border-radius: 12px !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: white;
+        border: 1px solid transparent;
+    }
+
+    .category-pill:hover {
+        background: #fbc531 !important;
+        color: #1a1a2e !important;
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(251, 197, 49, 0.2);
+    }
+
+    .category-pill.active {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+        color: #fbc531 !important;
+        box-shadow: 0 4px 15px rgba(22, 33, 62, 0.3);
+    }
+</style>

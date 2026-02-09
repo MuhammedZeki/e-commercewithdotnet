@@ -2,19 +2,61 @@
 @model List<Category>
 
 
-<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+     style="background: linear-gradient(135deg, #16213e 0%, #0f3460 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
     <div class="container">
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+        <button type="button" class="navbar-toggler border-0 shadow-none" data-bs-toggle="collapse"
+                data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav">
-                @foreach(var category in Model){
+            <ul class="navbar-nav w-100 justify-content-between">
+                @foreach (var category in Model)
+                {
                     <li class="nav-item">
-                        <a href="/product/category/@category.Url" class="nav-link ps-0">@category.CategoryName</a>
+                        <a href="/product/category/@category.Url"
+                              class="nav-link px-3 py-2 fw-medium text-uppercase letter-spacing-1 category-link">
+                            @category.CategoryName
+                        </a>
                     </li>
+                
                 }
             </ul>
         </div>
     </div>
 </nav>
+
+<style>
+    .category-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        position: relative;
+    }
+
+    .category-link:hover {
+        color: #fbc531 !important;
+        transform: translateY(-1px);
+    }
+
+    .category-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: #fbc531;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .category-link:hover::after {
+        width: 70%;
+    }
+
+    .letter-spacing-1 {
+        letter-spacing: 0.5px;
+    }
+</style>

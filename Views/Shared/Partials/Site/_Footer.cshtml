@@ -1,35 +1,75 @@
-<footer class="mt-3 py-4 bg-primary">
+<footer class="mt-5 py-5"
+        style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-top: 1px solid rgba(255, 255, 255, 0.1);">
     <div class="container">
-        <div class="row gy-3">
-            <div class="col-md-6 col-lg-4">
+        <div class="row gy-4 align-items-center">
+            <div class="col-md-6 col-lg-5">
+                <h5 class="text-white fw-bold mb-3">Fırsatları Kaçırmayın</h5>
                 <form>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email giriniz.">
-                        <button type="button" class="btn btn-outline-warning">Abone Ol</button>
+                    <div class="input-group shadow-lg" style="border-radius: 15px; overflow: hidden;">
+                        <input type="email" class="form-control border-0 py-3 ps-4"
+                               placeholder="E-posta adresinizi girin" style="background: rgba(255, 255, 255, 0.9);">
+                        <button type="button" class="btn btn-warning px-4 fw-bold text-dark"
+                                style="background: #fbc531; transition: 0.3s;">
+                            <i class="fa-solid fa-paper-plane me-2"></i>Abone Ol
+                        </button>
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 col-lg-8">
-                <nav class="text-center text-md-end">
-                    <a href="#" class="btn btn-icon btn-outline-warning">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="btn btn-icon btn-outline-warning">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="btn btn-icon btn-outline-warning">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="btn btn-icon btn-outline-warning">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </nav>
+
+            <div class="col-md-6 col-lg-7">
+                <div class="text-center text-md-end">
+                    <h5 class="text-white fw-bold mb-3 d-md-none">Bizi Takip Edin</h5>
+                    <div class="d-flex justify-content-center justify-content-md-end gap-2">
+                        <a href="#"
+                               class="btn btn-outline-warning d-flex align-items-center justify-content-center shadow-sm"
+                               style="width: 45px; height: 45px; border-radius: 12px; border-color: rgba(251, 197, 49, 0.3);">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                               class="btn btn-outline-warning d-flex align-items-center justify-content-center shadow-sm"
+                               style="width: 45px; height: 45px; border-radius: 12px; border-color: rgba(251, 197, 49, 0.3);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                               class="btn btn-outline-warning d-flex align-items-center justify-content-center shadow-sm"
+                               style="width: 45px; height: 45px; border-radius: 12px; border-color: rgba(251, 197, 49, 0.3);">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#"
+                               class="btn btn-outline-warning d-flex align-items-center justify-content-center shadow-sm"
+                               style="width: 45px; height: 45px; border-radius: 12px; border-color: rgba(251, 197, 49, 0.3);">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-12">
-                <p class="text-center text-md-start text-white">
-                    2026 Tüm hakları saklıdır.
-                </p>
+
+            <div class="col-12 mt-4 pt-4 border-top border-white border-opacity-10">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="text-white-50 mb-0 small">
+                            &copy; 2026 <span class="text-white fw-bold">E-Commerce</span>. Tüm hakları saklıdır.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                        <a href="#" class="text-white-50 text-decoration-none small me-3 hover-white">Gizlilik
+                            Politikası</a>
+                            <a href="#" class="text-white-50 text-decoration-none small hover-white">Kullanım Şartları</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <style>
+        .hover-white:hover {
+            color: white !important;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #fbc531 !important;
+            color: #1a1a2e !important;
+            transform: translateY(-3px);
+        }
+    </style>

@@ -1,87 +1,151 @@
+@model ProductEditModel
 @{
     Layout = "_AdminLayout";
 }
-@model ProductEditModel
 
 <form method="post" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-9">
-            <div class="card shadow">
-                <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                    <h5 class="card-title">Ürün Güncelleme</h5>
-                    <a asp-controller="Product" asp-action="Index" class="btn btn-sm btn-primary">
-                        <i class="fa-solid fa-list"></i>
+            <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div style="width: 5px; height: 25px; background: #54a0ff; border-radius: 10px;" class="me-3">
+                        </div>
+                        <h5 class="card-title fw-bold mb-0 text-dark">Ürün Güncelleme</h5>
+                    </div>
+                    <a asp-controller="Product" asp-action="Index"
+                           class="btn btn-light btn-sm rounded-pill px-3 border shadow-sm text-muted">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
                     </a>
                 </div>
-                <div class="card-body">
-                    <input type="hidden" name="Id" value="@Model.Id">
-                    <input type="hidden" name="ImgName" value="@Model.ImgName">
-                    <div class="row mb-3">
-                        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Name" class="form-control">
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <textarea asp-for="Description" rows="3" class="form-control"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Price" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Price" class="form-control">
-                            <span asp-validation-for="Price" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="IsActive" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="IsActive" class="form-check-input">
-                            <span asp-validation-for="IsActive" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="IsHome" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="IsHome" class="form-check-input">
-                            <span asp-validation-for="IsHome" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="CategoryId" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.Categories">
-                                <option value="" selected>Seçiniz</option>
-                            </select>
-                            <span asp-validation-for="CategoryId" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">Güncelle</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <img src="~/img/@Model.ImgName" class="img-thumbnail" alt="@Model.ImgName">
-                    <input asp-for="@Model.ImgFile" type="file" class="form-control mt-3">
-                    <span asp-validation-for="ImgFile" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
+                <div class="card-body p-4">
+                    <input type="hidden" asp-for="Id">
+                        <input type="hidden" asp-for="ImgName">
 
+                            <div class="row mb-4">
+                                <label asp-for="Name"
+                                       class="col-sm-2 col-form-label fw-bold text-muted small text-uppercase">Ürün Adı</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Name" class="form-control bg-light border-0 py-2 shadow-none"
+                                           style="border-radius: 10px;">
+                                        <span asp-validation-for="Name" class="text-danger small"></span>
+                                    </div>
+                                </div>
 
-@section Script {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+                                <div class="row mb-4">
+                                    <label asp-for="Description"
+                                           class="col-sm-2 col-form-label fw-bold text-muted small text-uppercase">Açıklama</label>
+                                    <div class="col-sm-10">
+                                        <textarea asp-for="Description" rows="4" class="form-control bg-light border-0 shadow-none"
+                                                  style="border-radius: 10px;"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger small"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <label asp-for="Price"
+                                                   class="col-sm-4 col-form-label fw-bold text-muted small text-uppercase">Fiyat</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-light border-0"
+                                                          style="border-radius: 10px 0 0 10px;"><i
+                                                        class="fa-solid fa-turkish-lira-sign text-primary"></i></span>
+                                                        <input asp-for="Price" class="form-control bg-light border-0 py-2 shadow-none"
+                                                               style="border-radius: 0 10px 10px 0;">
+                                                        </div>
+                                                        <span asp-validation-for="Price" class="text-danger small"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label asp-for="CategoryId"
+                                                           class="col-sm-4 col-form-label fw-bold text-muted small text-uppercase">Kategori</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-select bg-light border-0 py-2 shadow-none"
+                                                                style="border-radius: 10px;" asp-for="CategoryId"
+                                                                asp-items="ViewBag.Categories">
+                                                            <option value="">Seçiniz</option>
+                                                        </select>
+                                                        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-sm-10 offset-sm-2 d-flex gap-4">
+                                                <div class="form-check form-switch">
+                                                    <input asp-for="IsActive" class="form-check-input shadow-none" type="checkbox"
+                                                           role="switch">
+                                                        <label class="form-check-label fw-bold text-muted" asp-for="IsActive">Satışta
+                                                            Aktif</label>
+                                                        </div>
+                                                        <div class="form-check form-switch">
+                                                            <input asp-for="IsHome" class="form-check-input shadow-none" type="checkbox"
+                                                                   role="switch">
+                                                                <label class="form-check-label fw-bold text-muted" asp-for="IsHome">Anasayfada</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 opacity-10">
+
+                                                    <div class="row">
+                                                        <div class="col-sm-10 offset-sm-2">
+                                                            <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm rounded-pill"
+                                                                    style="background: #1a1a2e; border: none;">
+                                                                <i class="fa-solid fa-arrows-rotate me-2 text-warning"></i> Bilgileri Güncelle
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="card border-0 shadow-sm mb-4" style="border-radius: 20px;">
+                                                <div class="card-header bg-white border-0 py-3">
+                                                    <h6 class="fw-bold mb-0 text-dark text-center">Ürün Görseli</h6>
+                                                </div>
+                                                <div class="card-body text-center p-4">
+                                                    <div class="position-relative d-inline-block p-2 bg-light rounded-3 mb-3 border">
+                                                        <img src="~/img/@Model.ImgName" class="img-fluid rounded-3"
+                                                             style="max-height: 200px; width: 100%; object-fit: contain;" alt="@Model.Name">
+                                                        </div>
+
+                                                        <div class="mt-2 text-start">
+                                                            <label class="form-label small fw-bold text-muted text-uppercase">Resmi Değiştir</label>
+                                                            <input asp-for="ImgFile" type="file" class="form-control form-control-sm bg-light border-0">
+                                                                <span asp-validation-for="ImgFile" class="text-danger small"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer bg-light border-0 py-3 text-center rounded-bottom"
+                                                             style="border-radius: 0 0 20px 20px;">
+                                                            <small class="text-muted"><i class="fa-solid fa-circle-info me-1"></i> Yeni resim seçilmezse mevcut
+                                                                resim korunur.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            @section Script {
+                                                @await Html.PartialAsync("_ValidationScriptsPartial")
+                                            }
+
+                                            <style>
+                                                .form-control:focus,
+                                                .form-select:focus {
+                                                    background-color: #fff !important;
+                                                    border: 1px solid #54a0ff !important;
+                                                }
+
+                                                .form-check-input:checked {
+                                                    background-color: #10ac84;
+                                                    border-color: #10ac84;
+                                                }
+                                            </style>

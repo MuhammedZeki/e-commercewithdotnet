@@ -3,57 +3,71 @@
     Layout = "_AdminLayout";
 }
 
-
 <div class="row">
     <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Kategoriler</h5>
-                <a asp-controller="Category" asp-action="Create" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-plus"></i>
+        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #fbc531; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Kategori Yönetimi</h5>
+                </div>
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm" style="background: #1a1a2e; border: none;">
+                    <i class="fa-solid fa-plus me-1"></i> Yeni Kategori Ekle
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped mb-0">
-                        <thead class="table-secondary">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background: #f8f9fa;">
                             <tr>
-                                <th>Id</th>
-                                <th>Kategori Adı</th>
-                                <th>Url</th>
-                                <th>Ürün Sayısı</th>
-                                <th style="width: 150px;"></th>
+                                <th class="ps-4 border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">ID</th>
+                                <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Kategori Adı</th>
+                                <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">URL</th>
+                                <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Ürün Sayısı</th>
+                                <th class="border-0 text-end pe-4" style="width: 180px;">İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var kat in Model)
                             {
-
                                 <tr>
-                                    <td>@kat.Id</td>
-                                    <td>@kat.CategoryName</td>
-                                    <td>@kat.Url</td>
-                                    <td>@kat.ProductCount</td>
+                                    <td class="ps-4">
+                                        <span class="badge bg-light text-dark border fw-bold">#@kat.Id</span>
+                                    </td>
                                     <td>
-                                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@kat.Id"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <a asp-controller="Product" asp-action="Index" asp-route-kategori="@kat.Id"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-right-long"></i>
-                                        </a>
-                                        @if (@kat.ProductCount == 0)
-                                        {
-                                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@kat.Id"
-                                                class="btn btn-danger btn-sm">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                        <span class="fw-bold text-dark">@kat.CategoryName</span>
+                                    </td>
+                                    <td>
+                                        <code class="small text-primary bg-light px-2 py-1 rounded">/@kat.Url</code>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill px-3 py-2 @(kat.ProductCount > 0 ? "bg-info bg-opacity-10 text-info" : "bg-light text-muted")">
+                                            <i class="fa-solid fa-box me-1"></i> @kat.ProductCount Ürün
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <div class="btn-group shadow-sm rounded-pill bg-white p-1">
+                                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@kat.Id"
+                                               class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Düzenle">
+                                                <i class="fa-solid fa-pen-to-square text-primary"></i>
                                             </a>
-                                        }
+                                            <a asp-controller="Product" asp-action="Index" asp-route-kategori="@kat.Id"
+                                               class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Kategori Ürünleri">
+                                                <i class="fa-solid fa-arrow-right-to-bracket text-success"></i>
+                                            </a>
+                                            @if (kat.ProductCount == 0)
+                                            {
+                                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@kat.Id"
+                                                   class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Sil"
+                                                   onclick="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?')">
+                                                    <i class="fa-solid fa-trash-can text-danger"></i>
+                                                </a>
+                                            }
+                                        </div>
                                     </td>
                                 </tr>
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -61,3 +75,25 @@
         </div>
     </div>
 </div>
+
+<style>
+    .admin-action-btn {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+    .admin-action-btn:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.1);
+    }
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+    .table tbody tr:hover {
+        background-color: rgba(248, 249, 250, 0.8);
+    }
+    .btn-white { background: #fff; }
+</style>

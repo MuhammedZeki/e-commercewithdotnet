@@ -1,59 +1,83 @@
+@model SliderCreateModel
 @{
     Layout = "_AdminLayout";
 }
 
-@model SliderCreateModel
-<div class="row">
-    <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Slider Ekle</h5>
-                <a asp-controller="Slider" asp-action="Index" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-list"></i>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #f0932b; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Yeni Slider Ekle</h5>
+                </div>
+                <a asp-controller="Slider" asp-action="Index" class="btn btn-light btn-sm rounded-pill px-3 border shadow-sm text-muted">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-4">
                 <form method="post" asp-controller="Slider" asp-action="Create" enctype="multipart/form-data">
-                    <div class="row mb-3">
-                        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="text" asp-for="Title" class="form-control">
-                            <span asp-validation-for="Title" class="text-danger"></span>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="mb-4">
+                                <label asp-for="Title" class="form-label fw-bold text-muted small text-uppercase">Slider Başlığı</label>
+                                <input type="text" asp-for="Title" class="form-control bg-light border-0 py-2 shadow-none" style="border-radius: 10px;" placeholder="Görsel üzerinde görünecek başlık...">
+                                <span asp-validation-for="Title" class="text-danger small"></span>
+                            </div>
 
+                            <div class="mb-4">
+                                <label asp-for="Description" class="form-label fw-bold text-muted small text-uppercase">Kısa Açıklama</label>
+                                <textarea asp-for="Description" rows="4" class="form-control bg-light border-0 shadow-none" style="border-radius: 10px;" placeholder="Başlık altındaki açıklama metni..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label asp-for="Index" class="form-label fw-bold text-muted small text-uppercase">Görüntüleme Sırası</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-0" style="border-radius: 10px 0 0 10px;"><i class="fa-solid fa-sort"></i></span>
+                                            <input type="number" asp-for="Index" class="form-control bg-light border-0 py-2 shadow-none" style="border-radius: 0 10px 10px 0;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center pt-2">
+                                    <div class="form-check form-switch custom-switch">
+                                        <input type="checkbox" asp-for="IsActive" class="form-check-input shadow-none" role="switch">
+                                        <label class="form-check-label fw-bold text-muted ms-2" asp-for="IsActive">Yayınla (Aktif)</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <textarea asp-for="Description" rows="3" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Image" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="file" asp-for="Image" class="form-control">
-                            <span asp-validation-for="Image" class="text-danger"></span>
+
+                        <div class="col-md-5">
+                            <div class="card bg-light border-0 h-100" style="border-radius: 20px;">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
+                                    <label asp-for="Image" class="form-label fw-bold text-muted small text-uppercase mb-3">Slider Görseli</label>
+                                    
+                                    <div class="upload-zone text-center p-4 border-2 border-dashed rounded-4 bg-white w-100 mb-3">
+                                        <i class="fa-solid fa-images fs-1 text-muted opacity-25 mb-3"></i>
+                                        <p class="small text-muted mb-3">Önerilen boyut: 1920x800px</p>
+                                        <input type="file" asp-for="Image" class="form-control form-control-sm border-0 bg-light">
+                                    </div>
+                                    <span asp-validation-for="Image" class="text-danger small"></span>
+                                    
+                                    <div class="alert alert-info border-0 small mt-auto w-100" style="border-radius: 12px;">
+                                        <i class="fa-solid fa-circle-info me-1"></i> Yüksek kaliteli görseller slider görünümünü iyileştirir.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <label asp-for="Index" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="number" asp-for="Index" class="form-control">
-                        </div>
-                    </div>
+                    <hr class="my-4 opacity-10">
 
-                    <div class="row mb-3">
-                        <label asp-for="IsActive" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="checkbox" asp-for="IsActive" class="form-check-input">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
-                        </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="reset" class="btn btn-light px-4 py-2 rounded-pill border">Sıfırla</button>
+                        <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm rounded-pill" style="background: #1a1a2e; border: none;">
+                            <i class="fa-solid fa-cloud-arrow-up me-2 text-warning"></i> Slider'ı Kaydet
+                        </button>
                     </div>
                 </form>
             </div>
@@ -64,3 +88,25 @@
 @section Script {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .form-control:focus {
+        background-color: #fff !important;
+        border: 1px solid #f0932b !important;
+    }
+    .border-dashed {
+        border-style: dashed !important;
+        border-color: #dee2e6 !important;
+    }
+    .form-check-input:checked {
+        background-color: #f0932b;
+        border-color: #f0932b;
+    }
+    .upload-zone {
+        transition: all 0.3s;
+    }
+    .upload-zone:hover {
+        border-color: #f0932b !important;
+        background-color: #fffdfa !important;
+    }
+</style>

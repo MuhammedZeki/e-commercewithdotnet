@@ -1,73 +1,132 @@
+@model SliderEditModel
 @{
     Layout = "_AdminLayout";
 }
 
-@model SliderEditModel
-<div class="row">
-    <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Slider Güncelleme</h5>
-                <a asp-controller="Slider" asp-action="Index" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-list"></i>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #54a0ff; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Slider Güncelleme</h5>
+                </div>
+                <a asp-controller="Slider" asp-action="Index"
+                       class="btn btn-light btn-sm rounded-pill px-3 border shadow-sm text-muted">
+                    <i class="fa-solid fa-list me-1"></i> Listeye Dön
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-4">
                 <form method="post" asp-controller="Slider" asp-action="Edit" asp-route-id="@Model.Id"
-                    enctype="multipart/form-data">
-                    <input type="hidden" name="Id" value="@Model.Id">
-                    <input type="hidden" name="ImageName" value="@Model.ImageName">
-                    <div class="row mb-3">
-                        <label asp-for="ImageName" class="col-sm-2 col-form-label">Mevcut Resim</label>
-                        <div class="col-sm-10">
-                            <img src="~/img/@Model.ImageName" alt="@Model.ImageName" class="img-fluid rounded">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="text" asp-for="Title" class="form-control">
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <textarea asp-for="Description" rows="3" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label asp-for="ImageFile" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="file" asp-for="ImageFile" class="form-control">
-                        </div>
-                    </div>
+                      enctype="multipart/form-data">
+                    <input type="hidden" asp-for="Id">
+                        <input type="hidden" asp-for="ImageName">
 
-                    <div class="row mb-3">
-                        <label asp-for="Index" class="col-sm-2 col-form-label">Index</label>
-                        <div class="col-sm-10">
-                            <input type="number" asp-for="Index" class="form-control">
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-4 mb-md-0">
+                                    <label class="form-label fw-bold text-muted small text-uppercase">Mevcut Görsel</label>
+                                    <div class="position-relative bg-light rounded-4 overflow-hidden border p-2">
+                                        <img src="~/img/@Model.ImageName" alt="@Model.Title"
+                                             class="img-fluid rounded-3 shadow-sm">
+                                            <div
+                                                class="position-absolute bottom-0 start-0 w-100 bg-dark bg-opacity-50 text-white text-center py-1 small">
+                                                Aktif Görsel
+                                            </div>
+                                        </div>
 
-                    <div class="row mb-3">
-                        <label asp-for="IsActive" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="checkbox" asp-for="IsActive" class="form-check-input">
-                        </div>
-                    </div>
+                                        <div class="mt-4">
+                                            <label asp-for="ImageFile"
+                                                   class="form-label fw-bold text-muted small text-uppercase">Görseli Değiştir</label>
+                                            <input type="file" asp-for="ImageFile" class="form-control bg-light border-0 py-2">
+                                                <small class="text-muted mt-2 d-block">Yeni bir dosya seçmezseniz mevcut görsel
+                                                    korunur.</small>
+                                                </div>
+                                            </div>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                                            <div class="col-md-8 ps-md-5">
+                                                <div class="mb-4">
+                                                    <label asp-for="Title" class="form-label fw-bold text-muted small text-uppercase">Slider
+                                                        Başlığı</label>
+                                                        <input type="text" asp-for="Title"
+                                                               class="form-control bg-light border-0 py-2 shadow-none"
+                                                               style="border-radius: 10px;">
+                                                            <span asp-validation-for="Title" class="text-danger small"></span>
+                                                        </div>
 
-@section Script {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+                                                        <div class="mb-4">
+                                                            <label asp-for="Description"
+                                                                   class="form-label fw-bold text-muted small text-uppercase">Açıklama</label>
+                                                            <textarea asp-for="Description" rows="3"
+                                                                      class="form-control bg-light border-0 shadow-none"
+                                                                      style="border-radius: 10px;"></textarea>
+                                                        </div>
+
+                                                        <div class="row align-items-center">
+                                                            <div class="col-sm-6 mb-4 mb-sm-0">
+                                                                <label asp-for="Index"
+                                                                       class="form-label fw-bold text-muted small text-uppercase">Sıralama
+                                                                    (Index)</label>
+                                                                    <input type="number" asp-for="Index"
+                                                                           class="form-control bg-light border-0 py-2 shadow-none"
+                                                                           style="border-radius: 10px;">
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-check form-switch pt-4">
+                                                                            <input type="checkbox" asp-for="IsActive" class="form-check-input shadow-none"
+                                                                                   role="switch">
+                                                                                <label class="form-check-label fw-bold text-muted ms-2" asp-for="IsActive">Yayın
+                                                                                    Durumu (Aktif)</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <hr class="my-5 opacity-10">
+
+                                                                        <div class="d-flex justify-content-end gap-2">
+                                                                            <a asp-action="Index" class="btn btn-outline-secondary px-4 py-2 rounded-pill">İptal</a>
+                                                                            <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm rounded-pill"
+                                                                                    style="background: #1a1a2e; border: none;">
+                                                                                <i class="fa-solid fa-floppy-disk me-2 text-warning"></i> Değişiklikleri Kaydet
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @section Script {
+                                                @await Html.PartialAsync("_ValidationScriptsPartial")
+                                            }
+
+                                            <style>
+                                                .form-control:focus {
+                                                    background-color: #fff !important;
+                                                    box-shadow: 0 0 0 0.25rem rgba(84, 160, 255, 0.1);
+                                                    border: 1px solid #54a0ff !important;
+                                                }
+
+                                                .form-check-input:checked {
+                                                    background-color: #10ac84;
+                                                    border-color: #10ac84;
+                                                }
+
+                                                .card {
+                                                    animation: fadeIn 0.4s ease-in-out;
+                                                }
+
+                                                @@keyframes fadeIn {
+                                                    from {
+                                                        opacity: 0;
+                                                        transform: translateY(10px);
+                                                    }
+
+                                                    to {
+                                                        opacity: 1;
+                                                        transform: translateY(0);
+                                                    }
+                                                }
+                                            </style>

@@ -1,18 +1,64 @@
+@model Category
 @{
     Layout = "_AdminLayout";
 }
-@model Category
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body text-center">
-                @Model.CategoryName isimli kategoriyi silmek istiyor musunuz?
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg text-center" style="border-radius: 25px; overflow: hidden;">
+            <div style="height: 10px; background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);"></div>
+
+            <div class="card-body p-5">
+                <div class="mb-4">
+                    <div class="bg-danger bg-opacity-10 d-inline-block p-4 rounded-circle mb-3">
+                        <i class="fa-solid fa-triangle-exclamation text-danger" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark">Emin misiniz?</h3>
+                    <p class="text-muted">
+                        <strong class="text-danger">"@Model.CategoryName"</strong> isimli kategoriyi kalıcı olarak
+                        silmek üzeresiniz. Bu işlem geri alınamaz.
+                    </p>
+                </div>
+
                 <form asp-controller="Category" asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
                     <input type="hidden" name="Id" value="@Model.Id">
-                    <button type="submit" class="btn btn-danger">Evet</button>
-                    <a asp-action="Index" asp-controller="Category" type="button" class="btn btn-primary">Hayır</a>
+
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a asp-action="Index" asp-controller="Category"
+                               class="btn btn-light px-4 py-2 rounded-pill fw-bold border text-muted">
+                            <i class="fa-solid fa-xmark me-2"></i> Vazgeç
+                        </a>
+                        <button type="submit" class="btn btn-danger px-4 py-2 rounded-pill fw-bold shadow">
+                            <i class="fa-solid fa-trash-can me-2"></i> Evet, Sil
+                        </button>
+                    </div>
                 </form>
+            </div>
+
+            <div class="card-footer bg-light border-0 py-3">
+                <small class="text-muted italic">İpucu: Sadece içinde ürün bulunmayan kategoriler silinebilir.</small>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+    }
+</style>

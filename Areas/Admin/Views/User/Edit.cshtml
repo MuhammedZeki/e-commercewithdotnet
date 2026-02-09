@@ -1,71 +1,96 @@
+@model UserEditModel
 @{
     Layout = "_AdminLayout";
 }
-@model UserEditModel
 
-<div class="row">
-    <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Kullanıcı Güncelle</h5>
-                <a asp-action="Index" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-list"></i>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #0984e3; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Kullanıcı Profilini Düzenle</h5>
+                </div>
+                <a asp-action="Index" class="btn btn-light btn-sm rounded-pill px-3 border shadow-sm text-muted">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-4">
                 <form method="post" asp-action="Edit" asp-route-id="@Model.Id" novalidate>
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <input type="hidden" name="Id" value="@Model.Id">
-                    <div class="row mb-3">
-                        <label asp-for="FullName" class="form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="text" asp-for="FullName" class="form-control">
-                            <span asp-validation-for="FullName" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class=" row mb-3">
-                        <label asp-for="Email" class="form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="text" asp-for="Email" class="form-control">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                    </div>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 small mb-4" style="border-radius: 12px;"></div>
+                    <input type="hidden" asp-for="Id">
 
-                    <div class="card mb-2">
-                        <div class="card-header">
-                            <h6 class="card-title mb-0">Parola Güncelle</h6>
-                        </div>
-                        <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold text-primary mb-3"><i class="fa-solid fa-id-card me-2"></i>Kimlik Bilgileri</h6>
+                            
                             <div class="mb-3">
-                                <label asp-for="Password" class="form-label"></label>
-                                <input asp-for="Password" class="form-control">
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="ConfirmPassword" class="form-label"></label>
-                                <input asp-for="ConfirmPassword" class="form-control">
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card mb-2">
-                        <div class="card-header">
-                            <h6 class="card-title mb-0">Roller</h6>
-                        </div>
-                        <div class="card-body">
-                            @foreach (var i in ViewBag.Roles)
-                            {
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" value="@i" name="SelectedRoles" id="@i"
-                                        @(Model.SelectedRoles != null && Model.SelectedRoles.Contains(i) ? "checked" : "")>
-                                    <label for="@i" class="form-check-label">@i</label>
+                                <label asp-for="FullName" class="form-label fw-bold text-muted small text-uppercase"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-0"><i class="fa-solid fa-user text-muted"></i></span>
+                                    <input type="text" asp-for="FullName" class="form-control bg-light border-0 py-2 shadow-none" style="border-radius: 0 10px 10px 0;">
                                 </div>
-                            }
+                                <span asp-validation-for="FullName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label asp-for="Email" class="form-label fw-bold text-muted small text-uppercase"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-0"><i class="fa-solid fa-envelope text-muted"></i></span>
+                                    <input type="text" asp-for="Email" class="form-control bg-light border-0 py-2 shadow-none" style="border-radius: 0 10px 10px 0;">
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <h6 class="fw-bold text-warning mb-3 mt-4"><i class="fa-solid fa-key me-2"></i>Güvenlik (Opsiyonel)</h6>
+                            <div class="p-3 border rounded-4 bg-light bg-opacity-50">
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label fw-bold text-muted small text-uppercase">Yeni Parola</label>
+                                    <input asp-for="Password" class="form-control border-0 py-2 shadow-sm" placeholder="Değiştirmek istemiyorsanız boş bırakın">
+                                    <span asp-validation-for="Password" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-0">
+                                    <label asp-for="ConfirmPassword" class="form-label fw-bold text-muted small text-uppercase">Parola Tekrar</label>
+                                    <input asp-for="ConfirmPassword" class="form-control border-0 py-2 shadow-sm">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 ps-md-5">
+                            <h6 class="fw-bold text-success mb-3 mt-4 mt-md-0"><i class="fa-solid fa-user-shield me-2"></i>Yetkilendirme (Roller)</h6>
+                            <div class="card border-0 bg-light rounded-4">
+                                <div class="card-body">
+                                    <p class="text-muted small mb-3">Kullanıcıya atamak istediğiniz rolleri seçiniz:</p>
+                                    <div class="row">
+                                        @foreach (var i in ViewBag.Roles)
+                                        {
+                                            <div class="col-6 mb-2">
+                                                <div class="form-check form-switch p-3 bg-white rounded-3 shadow-sm border-0 h-100">
+                                                    <input type="checkbox" class="form-check-input ms-0 me-2" value="@i" name="SelectedRoles" id="@i"
+                                                        @(Model.SelectedRoles != null && Model.SelectedRoles.Contains(i) ? "checked" : "")>
+                                                    <label for="@i" class="form-check-label fw-bold text-dark small">@i</label>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info border-0 mt-4 small shadow-sm" style="border-radius: 15px;">
+                                <i class="fa-solid fa-circle-info me-2"></i> Parola alanlarını boş bırakırsanız mevcut parolanız değişmeden kalacaktır.
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+                    <hr class="my-4 opacity-10">
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm rounded-pill" style="background: #1a1a2e; border: none;">
+                            <i class="fa-solid fa-user-check me-2 text-warning"></i> Bilgileri Güncelle
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -73,5 +98,23 @@
 </div>
 
 @section Script {
-    @await Html.PartialAsync("_ValidationScriptsPartial");
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+<style>
+    .form-control:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(9, 132, 227, 0.1);
+        border: 1px solid #0984e3 !important;
+    }
+    .input-group-text {
+        border-radius: 10px 0 0 10px;
+    }
+    .form-check-input:checked {
+        background-color: #10ac84;
+        border-color: #10ac84;
+    }
+    .form-check-label {
+        cursor: pointer;
+    }
+</style>

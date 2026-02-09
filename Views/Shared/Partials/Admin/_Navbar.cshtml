@@ -1,44 +1,115 @@
-<nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm"
+     style="background: #1a1a2e; border-bottom: 2px solid #fbc531;">
     <div class="container">
-        <a asp-controller="Admin" asp-action="Index" class="navbar-brand">Admin</a>
+        <a asp-controller="Admin" asp-action="Index" class="navbar-brand d-flex align-items-center">
+            <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center me-2"
+                 style="width: 35px; height: 35px;">
+                <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <span class="fw-bold text-white letter-spacing-1">ADMIN<span class="text-warning">PANEL</span></span>
+        </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent">
+            <i class="fa-solid fa-bars"></i>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item">
-                    <a asp-controller="Category" asp-action="Index" class="nav-link">Kategori</a>
+                    <a asp-controller="Category" asp-action="Index" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-layer-group me-1"></i> Kategoriler
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Product" asp-action="Index" class="nav-link">Ürün</a>
+                    <a asp-controller="Product" asp-action="Index" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-boxes-stacked me-1"></i> Ürünler
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Slider" asp-action="Index" class="nav-link">Slider</a>
+                    <a asp-controller="Slider" asp-action="Index" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-images me-1"></i> Slider
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Role" asp-action="Index" class="nav-link">Role</a>
+                    <a asp-controller="Role" asp-action="Index" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-user-shield me-1"></i> Roller
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="User" asp-action="Index" class="nav-link">Kullanıcı</a>
+                    <a asp-controller="User" asp-action="Index" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-users-gear me-1"></i> Kullanıcılar
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="siparis.html" class="nav-link">Sipariş</a>
+                    <a href="siparis.html" class="nav-link admin-nav-link">
+                        <i class="fa-solid fa-cart-flatbed-suitcases me-1"></i> Siparişler
+                    </a>
                 </li>
             </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Muhammed Zeki</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" class="dropdown-item">Hesabım</a></li>
-                        <li><a asp-action="Logout" asp-controller="Account" class="dropdown-item">Çıkış</a></li>
-                    </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item me-lg-3">
+                    <a asp-action="Index" asp-controller="Home"
+                           class="btn btn-outline-warning btn-sm rounded-pill px-3">
+                        <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Siteye Git
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a asp-action="Index" asp-controller="Home" class="nav-link">Giriş</a>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center text-white"
+                           data-bs-toggle="dropdown">
+                        <div class="avatar-sm me-2 bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white"
+                             style="width: 30px; height: 30px; font-size: 0.8rem;">
+                            MZ
+                        </div>
+                        <span class="small fw-bold">Muhammed Zeki</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="border-radius: 12px;">
+                        <li>
+                            <a href="#" class="dropdown-item py-2">
+                                <i class="fa-solid fa-user-circle me-2 text-muted"></i> Profilim
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a asp-action="Logout" asp-controller="Account" class="dropdown-item py-2 text-danger">
+                                <i class="fa-solid fa-right-from-bracket me-2"></i> Güvenli Çıkış
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
-
     </div>
 </nav>
+
+<style>
+    .admin-nav-link {
+        color: rgba(255, 255, 255, 0.7) !important;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem !important;
+    }
+
+    .admin-nav-link:hover {
+        color: #fbc531 !important;
+        transform: translateY(-1px);
+    }
+
+    .letter-spacing-1 {
+        letter-spacing: 1px;
+    }
+
+    .dropdown-item:active {
+        background-color: #1a1a2e;
+    }
+
+    .admin-nav-link.active {
+        color: #fbc531 !important;
+        border-bottom: 2px solid #fbc531;
+    }
+</style>

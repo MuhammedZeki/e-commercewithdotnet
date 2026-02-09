@@ -2,10 +2,8 @@ using System.Security.Claims;
 using dotnet_db.Models;
 using dotnet_db.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_db.Controllers;
 

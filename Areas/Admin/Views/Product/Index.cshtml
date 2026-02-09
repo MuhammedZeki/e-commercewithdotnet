@@ -1,78 +1,112 @@
+@model List<ProductGetModel>
 @{
     Layout = "_AdminLayout";
 }
-@model List<ProductGetModel>
+
 <div class="row">
     <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Ürünler</h5>
-                <a asp-controller="Product" asp-action="Create" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-plus"></i>
+        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #fbc531; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Ürün Listesi</h5>
+                </div>
+                <a asp-controller="Product" asp-action="Create" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm" style="background: #1a1a2e; border: none;">
+                    <i class="fa-solid fa-plus me-1 text-warning"></i> Yeni Ürün Ekle
                 </a>
             </div>
-            <div class="card-body">
 
+            <div class="card-body bg-light border-top border-bottom py-3">
                 <form method="get" asp-action="Index" asp-controller="Product">
-                    <div class="input-group mb-2">
-                        <select name="kategori" class="form-select" asp-items="ViewBag.Categories">
-                            <option value="" selected>Hepsi</option>
-                        </select>
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                    <div class="row g-2 justify-content-end">
+                        <div class="col-md-4 col-lg-3">
+                            <div class="input-group">
+                                <label class="input-group-text bg-white border-0 small fw-bold text-muted">Kategori:</label>
+                                <select name="kategori" class="form-select border-0 shadow-sm small" asp-items="ViewBag.Categories" onchange="this.form.submit()">
+                                    <option value="">Tüm Ürünler</option>
+                                </select>
+                                <button class="btn btn-warning shadow-sm" type="submit">
+                                    <i class="fa-solid fa-filter"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
+            </div>
 
-                @if (@Model.Count == 0)
+            <div class="card-body p-0">
+                @if (Model.Count == 0)
                 {
-                    <p class="text-danger">Arağınız Kategoriye Uygun Ürün Bulunamadı</p>
+                    <div class="text-center py-5">
+                        <div class="bg-light d-inline-block p-4 rounded-circle mb-3">
+                            <i class="fa-solid fa-box-open text-muted fs-1"></i>
+                        </div>
+                        <h5 class="text-muted">Bu kategoride henüz ürün bulunamadı.</h5>
+                    </div>
                 }
                 else
                 {
-
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped mb-0">
-                            <thead class="table-secondary">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead style="background: #f8f9fa;">
                                 <tr>
-                                    <th style="width: 20px;">Id</th>
-                                    <th style="width: 80px;">Resim</th>
-                                    <th>Ürün Adı</th>
-                                    <th>Fiyat</th>
-                                    <th>Aktif</th>
-                                    <th>Anasayfa</th>
-                                    <th>Kategori</th>
-                                    <th style="width: 90px;"></th>
+                                    <th class="ps-4 border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem; width: 60px;">ID</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem; width: 100px;">Görsel</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Ürün Detayı</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Fiyat</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted text-center" style="font-size: 0.75rem;">Durum</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Kategori</th>
+                                    <th class="border-0 text-end pe-4" style="width: 120px;">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var i in @Model)
+                                @foreach (var i in Model)
                                 {
                                     <tr>
-                                        <td>@i.Id</td>
-                                        <td>
-                                            <img src="~/img/@i.Img" class="img-fluid" alt="@i.Name">
-                                        </td>
-                                        <td>@i.Name</td>
-                                        <td>@i.Price ₺</td>
-                                        <td>
-                                            <i
-                                                class="fa-solid @(i.IsActive ? "fa-circle-check text-success" : "fa-circle-xmark text-danger")"></i>
+                                        <td class="ps-4">
+                                            <span class="text-muted fw-bold">#@i.Id</span>
                                         </td>
                                         <td>
-                                            <i
-                                                class="fa-solid @(i.IsHome ? "fa-circle-check text-success" : "fa-circle-xmark text-danger")"></i>
+                                            <div class="p-1 bg-white border rounded shadow-sm" style="width: 60px; height: 60px;">
+                                                <img src="~/img/@i.Img" class="img-fluid rounded" alt="@i.Name" style="width: 100%; height: 100%; object-fit: cover;">
+                                            </div>
                                         </td>
-                                        <td>@i.CategoryName</td>
                                         <td>
-                                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@i.Id"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@i.Id"
-                                                class="btn btn-danger btn-sm">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </a>
+                                            <div class="fw-bold text-dark">@i.Name</div>
+                                            <div class="small text-muted">ID: @i.Id</div>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bolder text-primary">@i.Price.ToString("C2")</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-3">
+                                                <div class="text-center">
+                                                    <span class="d-block small text-muted mb-1" style="font-size: 0.65rem;">AKTİF</span>
+                                                    <i class="fa-solid @(i.IsActive ? "fa-circle-check text-success" : "fa-circle-xmark text-danger") fs-5"></i>
+                                                </div>
+                                                <div class="text-center">
+                                                    <span class="d-block small text-muted mb-1" style="font-size: 0.65rem;">VİTRİN</span>
+                                                    <i class="fa-solid @(i.IsHome ? "fa-circle-check text-success" : "fa-circle-xmark text-danger") fs-5"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-light text-dark border px-3 py-2 rounded-pill small">
+                                                <i class="fa-solid fa-tag me-1 text-warning"></i> @i.CategoryName
+                                            </span>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="btn-group shadow-sm rounded-pill bg-white p-1">
+                                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@i.Id"
+                                                   class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Düzenle">
+                                                    <i class="fa-solid fa-pen-to-square text-primary"></i>
+                                                </a>
+                                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@i.Id"
+                                                   class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Sil"
+                                                   onclick="return confirm('Bu ürünü silmek istediğinize emin misiniz?')">
+                                                    <i class="fa-solid fa-trash-can text-danger"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
@@ -84,3 +118,26 @@
         </div>
     </div>
 </div>
+
+<style>
+    .admin-action-btn {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+    .admin-action-btn:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.1);
+    }
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+    .table tbody tr:hover {
+        background-color: rgba(248, 249, 250, 0.8);
+    }
+    .btn-white { background: #fff; }
+    .form-select:focus { box-shadow: none; border-color: #fbc531; }
+</style>

@@ -13,55 +13,88 @@
 }
 
 
-<section class="top-bar">
+<section class="top-bar py-3 shadow-sm"
+         style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
     <div class="container">
-        <div class="row gy-2 align-items-center">
-            <div class="col-lg-2 col-sm-4 col-4">
-                <a href="/" class="navbar-brand"><i class="fa-solid fa-truck-fast"></i>E-Commerce</a>
+        <div class="row gy-3 align-items-center">
+            <div class="col-lg-2 col-sm-4 col-12 text-center text-sm-start">
+                <a href="/" class="navbar-brand fw-bold fs-4 text-white">
+                    <i class="fa-solid fa-truck-fast text-warning me-2"></i>E-Commerce
+                </a>
             </div>
 
-            <div class="col-lg-5 col-sm-8 col-8 order-lg-last">
-                <div class="text-end">
+            <div class="col-lg-5 col-12 order-3 order-lg-2">
+                <form method="get" action="@GetSearchAction()">
+                    <div class="input-group shadow-sm"
+                         style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <input name="q" type="text" placeholder="Ürün ara..." class="form-control border-0 ps-3"
+                               style="background: rgba(255, 255, 255, 0.1); color: white; height: 42px;">
+                        <button type="submit" class="btn btn-warning border-0 px-3" style="background: #fbc531;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-5 col-sm-8 col-12 order-2 order-lg-3">
+                <div class="d-flex justify-content-center justify-content-sm-end align-items-center gap-2">
                     @if (User.Identity?.IsAuthenticated == true)
                     {
                         @if (User.IsInRole("Admin"))
                         {
-                            <a asp-controller="Admin" asp-action="Index" class="btn btn-danger">
-                                <i class="fa-solid fa-lock"></i> <span class="ms-1 d-none d-sm-inline-block">Admin</span>
+                            <a asp-controller="Admin" asp-action="Index"
+                                   class="btn btn-sm btn-danger fw-bold rounded-pill px-3 shadow-sm">
+                                <i class="fa-solid fa-lock"></i> <span class="ms-1 d-none d-xl-inline-block">Admin</span>
                             </a>
                         }
-                        <a asp-controller="Account" asp-action="UserEdit" class="btn btn-light">
-                            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline-block">Hesabım</span>
+                        <a asp-controller="Account" asp-action="UserEdit"
+                               class="btn btn-sm btn-outline-light border-0 fw-medium rounded-pill px-3"
+                               style="background: rgba(255, 255, 255, 0.05);">
+                            <i class="fa fa-user me-1"></i> <span class="d-none d-sm-inline-block">Hesabım</span>
                         </a>
-                        <a href="#" class="btn btn-light">
-                            <i class="fa fa-heart"></i> <span class="ms-1 d-none d-sm-inline-block">Listem</span>
-                        </a>
-                        <a asp-controller="Account" asp-action="Logout" class="btn btn-light">
-                            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline-block">Çıkış</span>
+                        <a asp-controller="Account" asp-action="Logout"
+                               class="btn btn-sm btn-outline-light border-0 fw-medium rounded-pill px-3"
+                               style="background: rgba(255, 255, 255, 0.05);">
+                            <i class="fa-solid fa-right-from-bracket me-1"></i> <span
+                            class="d-none d-sm-inline-block">Çıkış</span>
                         </a>
                     }
                     else
                     {
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-light">
-                            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline-block">Giriş</span>
+                        <a asp-controller="Account" asp-action="Login"
+                               class="btn btn-sm btn-outline-light border-0 fw-medium rounded-pill px-3"
+                               style="background: rgba(255, 255, 255, 0.05);">
+                            <i class="fa fa-sign-in-alt me-1"></i> Giriş
                         </a>
-                        <a asp-controller="Account" asp-action="Create" class="btn btn-light">
-                            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline-block">Üye Ol</span>
+                        <a asp-controller="Account" asp-action="Create"
+                               class="btn btn-sm btn-light fw-bold rounded-pill px-3 text-dark">
+                            Üye Ol
                         </a>
                     }
-                    <a asp-controller="Cart" asp-action="Index" class="btn btn-light">
-                        <i class="fa fa-shopping-cart"></i> <span class="ms-1 d-none d-sm-inline-block">Sepetim</span>
+
+                    <a asp-controller="Cart" asp-action="Index"
+                           class="btn btn-sm btn-warning fw-bold rounded-pill px-3 shadow-sm" style="background: #fbc531;">
+                        <i class="fa fa-shopping-cart me-1"></i> <span class="d-none d-sm-inline-block">Sepetim</span>
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-5">
-                <form method="get" action="@GetSearchAction()">
-                    <div class="input-group">
-                        <input name="q" type="text" placeholder="Anahtar kelime" class="form-control">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .top-bar .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .top-bar .form-control:focus {
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: white !important;
+        box-shadow: none;
+    }
+
+    .top-bar .btn-outline-light:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
+    }
+</style>

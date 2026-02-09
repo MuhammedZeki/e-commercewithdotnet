@@ -4,32 +4,77 @@
     @await Component.InvokeAsync("Navbar")
 }
 
-<section class="mt-3">
+<section class="mt-4">
     <div class="container">
-        <div class="card">
-            <div class="row p-1 p-lg-2 gx-2">
+        <div class="card border-0 shadow-sm p-2"
+             style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border-radius: 25px;">
+            <div class="row g-3">
                 <div class="col-lg-3 d-none d-lg-block">
-                    @await Html.PartialAsync("Partials/Site/_Menu", ViewData["categories"])
+                    <div class="h-100 px-2">
+                        @await Html.PartialAsync("Partials/Site/_Menu", ViewData["categories"])
+                    </div>
                 </div>
                 <div class="col-lg-9">
-                    @await Component.InvokeAsync("Slider")
+                    <div class="overflow-hidden shadow-sm" style="border-radius: 20px;">
+                        @await Component.InvokeAsync("Slider")
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mt-3">
+<section class="mt-5">
     <div class="container">
-        <h3 class="h4 mb-1 mb-lg-3">Son Eklenenler</h3>
+        <div class="d-flex align-items-center mb-4">
+            <div style="width: 5px; height: 30px; background: #fbc531; border-radius: 10px;" class="me-3"></div>
+            <h3 class="h4 fw-bold mb-0 text-dark" style="letter-spacing: -0.5px;">Son Eklenen Ürünler</h3>
+            <div class="ms-auto">
+                <a asp-controller="Product" asp-action="List"
+                   class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-medium">Tümünü Gör</a>
+            </div>
+        </div>
 
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach (var product in Model)
             {
-                <div class="col">
-                    @await Html.PartialAsync("Partials/Site/_ProductCard", product)
+                <div class="col product-col">
+                    <div class="h-100 transition-transform">
+                        @await Html.PartialAsync("Partials/Site/_ProductCard", product)
+                    </div>
                 </div>
+
+
+           
             }
         </div>
     </div>
 </section>
+
+<style>
+    .product-col {
+        transition: transform 0.3s ease;
+    }
+
+    .product-col:hover {
+        transform: translateY(-8px);
+    }
+
+    /* Scroll bar güzelleştirme */
+    body::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #1a1a2e;
+        border-radius: 10px;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+        background: #16213e;
+    }
+</style>

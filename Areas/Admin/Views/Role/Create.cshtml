@@ -1,38 +1,75 @@
+@model RoleCreateModel
 @{
     Layout = "_AdminLayout";
 }
-@model RoleCreateModel
 
-<div class="row">
-    <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Kategori Ekle</h5>
-                <a asp-action="Index" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-list"></i>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #6c5ce7; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Yeni Rol Tanımla</h5>
+                </div>
+                <a asp-action="Index" class="btn btn-light btn-sm rounded-pill px-3 border shadow-sm text-muted">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Listeye Dön
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body p-4">
                 <form method="post" asp-action="Create" novalidate>
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class=" row mb-3">
-                        <label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="text" asp-for="RoleName" class="form-control">
-                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 small mb-4"
+                         style="border-radius: 12px;"></div>
+
+                    <div class="row mb-4">
+                        <label asp-for="RoleName"
+                               class="col-sm-3 col-form-label fw-bold text-muted small text-uppercase">Rol İsmi</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0" style="border-radius: 12px 0 0 12px;">
+                                    <i class="fa-solid fa-user-shield opacity-50 text-primary"></i>
+                                </span>
+                                <input type="text" asp-for="RoleName"
+                                       class="form-control bg-light border-0 py-2 shadow-none"
+                                       style="border-radius: 0 12px 12px 0;" placeholder="Örn: Editor, Manager">
+                                </div>
+                                <span asp-validation-for="RoleName" class="text-danger small mt-1 d-block"></span>
+                                <div class="mt-2 small text-muted">
+                                    <i class="fa-solid fa-circle-info me-1"></i> Benzersiz bir rol adı belirlediğinizden
+                                    emin olun.
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
+
+                        <hr class="my-4 opacity-10">
+
+                        <div class="row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm rounded-pill"
+                                        style="background: #1a1a2e; border: none;">
+                                    <i class="fa-solid fa-plus me-2 text-warning"></i> Rolü Kaydet
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Script {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+    @section Script {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
+
+    <style>
+        .form-control:focus {
+            background-color: #fff !important;
+            box-shadow: 0 0 0 0.25rem rgba(108, 92, 231, 0.1);
+            border: 1px solid #6c5ce7 !important;
+        }
+
+        .input-group-text {
+            min-width: 45px;
+            justify-content: center;
+        }
+    </style>

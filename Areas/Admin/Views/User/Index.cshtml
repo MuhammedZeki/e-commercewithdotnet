@@ -1,74 +1,133 @@
-@using Microsoft.AspNetCore.Identity;
-
+@using Microsoft.AspNetCore.Identity
 @model IEnumerable<AppUser>
 @{
     Layout = "_AdminLayout";
 }
 
-
 <div class="row">
     <div class="col">
-        <div class="card shadow">
-            <div class="card-header py-1 d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Kuallanıcılar</h5>
-                <a asp-controller="User" asp-action="Create" class="btn btn-sm btn-primary">
-                    <i class="fa-solid fa-plus"></i>
+        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+            <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div style="width: 5px; height: 25px; background: #0984e3; border-radius: 10px;" class="me-3"></div>
+                    <h5 class="card-title fw-bold mb-0 text-dark">Kullanıcı Yönetimi</h5>
+                </div>
+                <a asp-controller="User" asp-action="Create" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm" style="background: #1a1a2e; border: none;">
+                    <i class="fa-solid fa-user-plus me-1 text-warning"></i> Yeni Kullanıcı
                 </a>
             </div>
-            <div class="card-body">
+
+            <div class="card-body bg-light border-bottom border-top py-3">
                 <form method="get" asp-action="Index">
-                    <div class="input-group mb-2">
-                        <select name="role" class="form-select" asp-items="ViewBag.Roles">
-                            <option value="" selected>Hepsi</option>
-                        </select>
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="input-group shadow-sm" style="border-radius: 50px; overflow: hidden;">
+                                <span class="input-group-text bg-white border-0 ps-4">
+                                    <i class="fa-solid fa-filter text-muted small"></i>
+                                </span>
+                                <select name="role" class="form-select border-0 bg-white shadow-none py-2" asp-items="ViewBag.Roles">
+                                    <option value="">Tüm Rollerde Ara...</option>
+                                </select>
+                                <button class="btn btn-primary px-4 border-0" type="submit" style="background: #6c5ce7;">
+                                    <i class="fa-solid fa-magnifying-glass"></i> Filtrele
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
-                @if (@Model.Count() == 0)
-                {
-                    <p class="alert alert-danger text-danger">Aradığınız Kullanıcı Bulunamadı</p>
+            </div>
 
+            <div class="card-body p-0">
+                @if (!Model.Any())
+                {
+                    <div class="text-center py-5">
+                        <i class="fa-solid fa-user-slash fs-1 text-muted opacity-25 mb-3"></i>
+                        <p class="text-secondary fw-bold">Aradığınız kriterlere uygun kullanıcı bulunamadı.</p>
+                        <a asp-action="Index" class="btn btn-sm btn-outline-secondary rounded-pill">Filtreyi Temizle</a>
+                    </div>
                 }
                 else
                 {
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped mb-0">
-                            <thead class="table-secondary">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-white">
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Ad Soyad</th>
-                                    <th>Email</th>
-                                    <th style="width: 90px;"></th>
+                                    <th class="ps-4 border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Profil</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Email</th>
+                                    <th class="border-0 text-uppercase small fw-bolder text-muted" style="font-size: 0.75rem;">Kullanıcı ID</th>
+                                    <th class="border-0 text-end pe-4" style="width: 150px;">İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var kat in Model)
+                                @foreach (var user in Model)
                                 {
-
                                     <tr>
-                                        <td>@kat.Id</td>
-                                        <td>@kat.FullName</td>
-                                        <td>@kat.Email</td>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center">
+                                                <div class="rounded-circle bg-soft-primary d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 40px; height: 40px; background-color: #e3f2fd;">
+                                                    <i class="fa-solid fa-user text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold text-dark d-block">@user.FullName</span>
+                                                    <span class="badge bg-light text-muted border py-1 px-2 rounded-pill" style="font-size: 0.65rem;">Üye</span>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
-                                            <a asp-controller="User" asp-action="Edit" asp-route-id="@kat.Id"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a asp-controller="User" asp-action="Delete" asp-route-id="@kat.Id"
-                                                class="btn btn-danger btn-sm">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </a>
+                                            <span class="text-muted small"><i class="fa-regular fa-envelope me-1"></i> @user.Email</span>
+                                        </td>
+                                        <td>
+                                            <code class="small text-muted" style="font-size: 0.7rem;">@user.Id</code>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="btn-group shadow-sm rounded-pill bg-white p-1 border">
+                                                <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" 
+                                                   class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Düzenle">
+                                                    <i class="fa-solid fa-user-pen text-primary"></i>
+                                                </a>
+                                                <a asp-controller="User" asp-action="Delete" asp-route-id="@user.Id" 
+                                                   class="btn btn-sm btn-white border-0 rounded-circle admin-action-btn" title="Sil">
+                                                    <i class="fa-solid fa-trash-can text-danger"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
-
                             </tbody>
                         </table>
                     </div>
                 }
             </div>
+            
+            <div class="card-footer bg-white border-0 py-3">
+                <small class="text-muted">
+                    <i class="fa-solid fa-circle-info me-1 text-info"></i> Toplam <strong>@Model.Count()</strong> kullanıcı listeleniyor.
+                </small>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .admin-action-btn {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+    .admin-action-btn:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.1);
+    }
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+    .table tbody tr:hover {
+        background-color: rgba(248, 249, 250, 0.9);
+    }
+    .bg-soft-primary { background-color: #eef6ff; }
+    .btn-white { background: #fff; }
+    .form-select:focus { box-shadow: none; border-color: transparent; }
+</style>

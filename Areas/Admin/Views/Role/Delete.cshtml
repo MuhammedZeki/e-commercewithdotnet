@@ -1,30 +1,84 @@
+@model AppRole
 @{
     Layout = "_AdminLayout";
 }
-@model AppRole
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body text-center">
-                @Model.Name isimli kategoriyi silmek istiyor musunuz?
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7 col-lg-6">
+        <div class="card border-0 shadow-lg" style="border-radius: 25px; overflow: hidden;">
+            <div style="height: 10px; background: linear-gradient(90deg, #6c5ce7 0%, #a29bfe 100%);"></div>
+
+            <div class="card-body p-5 text-center">
+                <div class="mb-4">
+                    <div class="bg-light d-inline-block p-4 rounded-circle mb-3 border">
+                        <i class="fa-solid fa-user-lock text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark">Rolü Sil?</h3>
+                    <p class="text-muted">
+                        <strong class="text-primary">"@Model.Name"</strong> isimli rolü sistemden kaldırmak istediğinize emin misiniz?
+                    </p>
+                </div>
+
                 <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
                     <input type="hidden" name="Id" value="@Model.Id">
 
-                    @if (ViewBag.Users.Count > 0)
+                    @if (ViewBag.Users != null && ViewBag.Users.Count > 0)
                     {
-                        @foreach (var user in ViewBag.Users)
-                        {
-                            <p>@user.UserName</p>
-                        }
+                        <div class="alert alert-warning border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                <i class="fa-solid fa-triangle-exclamation fs-4 me-2"></i>
+                                <strong class="small text-uppercase">Silme İşlemi Engellendi</strong>
+                            </div>
+                            <p class="small mb-3">Bu rolü silemezsiniz çünkü aşağıdaki kullanıcılara atanmış durumda:</p>
+                            <div class="bg-white rounded-3 p-2 border overflow-auto" style="max-height: 150px;">
+                                @foreach (var user in ViewBag.Users)
+                                {
+                                    <div class="d-flex align-items-center mb-1 text-start px-2">
+                                        <i class="fa-solid fa-user-tag text-muted me-2 small"></i>
+                                        <span class="small fw-bold text-dark">@user.UserName</span>
+                                    </div>
+                                }
+                            </div>
+                            <p class="small mt-3 mb-0 text-muted">Lütfen önce bu kullanıcıların rollerini değiştirin.</p>
+                        </div>
                     }
-                    else
-                    {
 
-                        <button type="submit" class="btn btn-danger">Evet</button>
-                    }
-                    <a asp-action="Index" type="button" class="btn btn-primary">Hayır</a>
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <a asp-action="Index" class="btn btn-light px-4 py-2 rounded-pill fw-bold border text-muted">
+                            <i class="fa-solid fa-arrow-left me-2"></i> Vazgeç
+                        </a>
+
+                        @if (ViewBag.Users == null || ViewBag.Users.Count == 0)
+                        {
+                            <button type="submit" class="btn btn-danger px-5 py-2 rounded-pill fw-bold shadow-sm">
+                                <i class="fa-solid fa-trash-can me-2"></i> Evet, Sil
+                            </button>
+                        }
+                    </div>
                 </form>
+            </div>
+
+            <div class="card-footer bg-light border-0 py-3 text-center">
+                <small class="text-muted">
+                    <i class="fa-solid fa-circle-info me-1"></i> Role bağlı kullanıcı varken silme yapılamaz.
+                </small>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        animation: slideIn 0.4s ease-out;
+    }
+    @@keyframes slideIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+        transition: all 0.3s;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+</style>
